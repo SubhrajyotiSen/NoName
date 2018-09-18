@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Phoenix",
+    "tasks_completed": 24,
+    "tasks_total": 73,
+    "deadline": "27/09/2018"
+  },
+  {
+    "name": "Phoenix2",
+    "tasks_completed": 75,
+    "tasks_total": 75,
+    "deadline": "29/09/2018"
+  },
+  {
+    "name": "Phoenix3",
+    "tasks_completed": 24,
+    "tasks_total": 73,
+    "deadline": "27/09/2018"
+  },
+  {
+    "name": "Phoenix4",
+    "tasks_completed": 24,
+    "tasks_total": 73,
+    "deadline": "27/09/2018"
+  }
+]

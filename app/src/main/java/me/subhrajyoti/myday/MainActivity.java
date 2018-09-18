@@ -13,15 +13,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.adapters.BirthdayAdapter;
+import me.subhrajyoti.myday.adapters.ProjectsAdapter;
 import me.subhrajyoti.myday.data.BirthdayModel;
+import me.subhrajyoti.myday.data.ProjectModel;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.birthdaysRecyclerView)
     RecyclerView birthdaysRecyclerView;
+    @BindView(R.id.projectsRecyclerView)
+    RecyclerView projectRecyclerView;
+
 
     private BirthdayAdapter birthdayAdapter;
+    private ProjectsAdapter projectsAdapter;
     private List<BirthdayModel> birthdayModelList;
+    private List<ProjectModel> projectModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         try {
-            birthdayModelList = Utils.parse(Utils.loadJSONFromAsset("bdays.json", this));
+            birthdayModelList = Utils.parseBirthdays(Utils.loadJSONFromAsset("bdays.json", this));
+            projectModelList = Utils.parseProjects(Utils.loadJSONFromAsset("projects.json", this));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -46,7 +54,15 @@ public class MainActivity extends AppCompatActivity {
         birthdaysRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         birthdaysRecyclerView.setAdapter(birthdayAdapter);
 
+        projectsAdapter = new ProjectsAdapter(projectModelList, new ProjectsAdapter.ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                Toast.makeText(MainActivity.this, "Project tapped", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        projectRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        projectRecyclerView.setAdapter(projectsAdapter);
 
     }
 }

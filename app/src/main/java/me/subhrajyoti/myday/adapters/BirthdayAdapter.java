@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
-import java.text.ParseException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,11 +48,7 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
 
         birthdayViewHolder.name.setText(birthdayModel.getName());
         birthdayViewHolder.role.setText(birthdayModel.getRole());
-        try {
-            birthdayViewHolder.birthdayWhen.setText(Utils.birthdayTimeToDisplay(birthdayModel.getBirthday()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        birthdayViewHolder.birthdayWhen.setText(Utils.birthdayTimeToDisplay(birthdayModel.getBirthday()));
 
         Picasso.get().load(birthdayModelList.get(position).getImageURL()).into(birthdayViewHolder.birthdayPersonImage);
         // TODO: use something like Shimmer as a placeholder while loading image
