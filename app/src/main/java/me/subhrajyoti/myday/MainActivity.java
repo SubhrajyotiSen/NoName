@@ -13,6 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.adapters.BirthdayAdapter;
+import me.subhrajyoti.myday.adapters.ClickListener;
 import me.subhrajyoti.myday.adapters.ProjectsAdapter;
 import me.subhrajyoti.myday.data.BirthdayModel;
 import me.subhrajyoti.myday.data.ProjectModel;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         birthdaysRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         birthdaysRecyclerView.setAdapter(birthdayAdapter);
 
-        projectsAdapter = new ProjectsAdapter(projectModelList, new ProjectsAdapter.ClickListener() {
+        projectsAdapter = new ProjectsAdapter(projectModelList, new ClickListener() {
             @Override
             public void onPositionClicked(int position) {
                 Toast.makeText(MainActivity.this, "Project tapped", Toast.LENGTH_SHORT).show();

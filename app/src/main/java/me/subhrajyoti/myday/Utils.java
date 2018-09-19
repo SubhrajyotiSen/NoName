@@ -1,21 +1,19 @@
 package me.subhrajyoti.myday;
 
 import android.content.Context;
-import android.util.Log;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import me.subhrajyoti.myday.data.BirthdayModel;
 import me.subhrajyoti.myday.data.ProjectModel;
@@ -23,10 +21,13 @@ import me.subhrajyoti.myday.data.ProjectModel;
 public class Utils {
 
     public static String birthdayTimeToDisplay(String day) {
-        /*TODO: write logic to check if birthday is today or upcoming
-            for now return Upcoming
-         */
-        return "Upcoming";
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        MyDate today = MyDate.Companion.makeMyDate(dateFormat.format(new Date()));
+        MyDate birthday = MyDate.Companion.makeMyDate(day);
+        if (MyDate.Companion.compare(today, birthday))
+            return "Upcoming";
+        else
+            return "Today";
     }
 
     public static ArrayList<BirthdayModel> parseBirthdays(String json) throws JSONException {
@@ -73,8 +74,16 @@ public class Utils {
         return json;
     }
 
-    public static int daysLeftTillDeadline(String deadline) {
-        // TODO: calculate number of days till deadline. For now return 15
-        return 15;
+    public static int daysLeftTillDeadline(String day) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date deadline = null;
+        try {
+            deadline = dateFormat.parse(day);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date today = new Date();
+        long diff = deadline.getTime() - today.getTime();
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 }

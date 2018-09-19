@@ -22,9 +22,9 @@ import me.subhrajyoti.myday.data.ProjectModel;
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
 
     private final List<ProjectModel> projectModelList;
-    private final ProjectsAdapter.ClickListener clickListener;
+    private final ClickListener clickListener;
 
-    public ProjectsAdapter(List<ProjectModel> projectModelList, ProjectsAdapter.ClickListener clickListener) {
+    public ProjectsAdapter(List<ProjectModel> projectModelList, ClickListener clickListener) {
         this.projectModelList = projectModelList;
         this.clickListener = clickListener;
     }
@@ -76,12 +76,12 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         ProgressBar projectProgressBar;
         @BindView(R.id.deadlineDays)
         TextView deadlineDays;
-        private WeakReference<ProjectsAdapter.ClickListener> listenerRef;
+        private WeakReference<ClickListener> listenerRef;
 
         public ProjectsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-//
+
             listenerRef = new WeakReference<>(clickListener);
             itemView.setOnClickListener(this);
         }
@@ -93,7 +93,5 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         }
     }
 
-    public interface ClickListener {
-        void onPositionClicked(int position);
-    }
+
 }
