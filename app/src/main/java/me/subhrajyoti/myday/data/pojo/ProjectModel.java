@@ -22,15 +22,6 @@ public class ProjectModel {
         this.deadline = deadline;
     }
 
-    public ProjectModel(JSONObject jsonObject) throws JSONException {
-        projectName = jsonObject.optString("name");
-        tasksCompleted = jsonObject.optInt("tasks_completed");
-        tasksTotal = jsonObject.optInt("tasks_total");
-        deadline = jsonObject.optString("deadline");
-
-    }
-
-
     public String getProjectName() {
         return projectName;
     }

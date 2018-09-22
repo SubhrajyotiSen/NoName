@@ -20,15 +20,6 @@ public class BirthdayModel {
         this.imageURL = imageURL;
     }
 
-    public BirthdayModel(JSONObject jsonObject) throws JSONException {
-        name = jsonObject.optString("name");
-        role = jsonObject.optString("role");
-        birthday = jsonObject.optString("birthday");
-        imageURL = jsonObject.optString("image_url");
-
-    }
-
-
     public String getName() {
         return name;
     }
