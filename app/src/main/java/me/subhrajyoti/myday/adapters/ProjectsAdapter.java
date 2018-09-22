@@ -11,21 +11,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
-import me.subhrajyoti.myday.data.ProjectModel;
+import me.subhrajyoti.myday.data.pojo.ProjectModel;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
 
     private final List<ProjectModel> projectModelList;
     private final ClickListener clickListener;
 
-    public ProjectsAdapter(List<ProjectModel> projectModelList, ClickListener clickListener) {
-        this.projectModelList = projectModelList;
+    public ProjectsAdapter(ClickListener clickListener) {
+        this.projectModelList = new ArrayList<>();
         this.clickListener = clickListener;
     }
 
@@ -93,5 +94,8 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         }
     }
 
-
+    public void addAll(List<ProjectModel> projectModels) {
+        this.projectModelList.addAll(projectModels);
+        notifyDataSetChanged();
+    }
 }

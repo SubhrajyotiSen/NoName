@@ -2,6 +2,8 @@ package me.subhrajyoti.myday;
 
 import android.content.Context;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import me.subhrajyoti.myday.data.BirthdayModel;
-import me.subhrajyoti.myday.data.ProjectModel;
+import me.subhrajyoti.myday.data.pojo.BirthdayModel;
+import me.subhrajyoti.myday.data.pojo.ProjectModel;
+import me.subhrajyoti.myday.data.remote.ApiService;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Utils {
 
@@ -85,5 +90,14 @@ public class Utils {
         Date today = new Date();
         long diff = deadline.getTime() - today.getTime();
         return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
+    public static ApiService getApiService() {
+        return new Retrofit.Builder()
+                .baseUrl("http://www.mocky.io/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+                .create(ApiService.class);
     }
 }

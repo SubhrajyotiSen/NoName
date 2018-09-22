@@ -1,12 +1,17 @@
-package me.subhrajyoti.myday.data;
+package me.subhrajyoti.myday.data.pojo;
+
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProjectModel {
 
+    @SerializedName("name")
     private String projectName;
+    @SerializedName("tasks_completed")
     private int tasksCompleted;
+    @SerializedName("tasks_total")
     private int tasksTotal;
     private String deadline;
 

@@ -1,4 +1,6 @@
-package me.subhrajyoti.myday.data;
+package me.subhrajyoti.myday.data.pojo;
+
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +10,7 @@ public class BirthdayModel {
     private String name;
     private String role;
     private String birthday;
+    @SerializedName("image_url")
     private String imageURL;
 
     public BirthdayModel(String name, String role, String birthday, String imageURL) {

@@ -11,21 +11,22 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
-import me.subhrajyoti.myday.data.BirthdayModel;
+import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 
 public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.BirthdayViewHolder> {
 
     private final List<BirthdayModel> birthdayModelList;
     private final ClickListener clickListener;
 
-    public BirthdayAdapter(List<BirthdayModel> birthdayModelList, ClickListener clickListener) {
-        this.birthdayModelList = birthdayModelList;
+    public BirthdayAdapter(ClickListener clickListener) {
+        this.birthdayModelList = new ArrayList<>();
         this.clickListener = clickListener;
     }
 
@@ -91,6 +92,11 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
 
     public interface ClickListener {
         void onPositionClicked(int position);
+    }
+
+    public void addAll(List<BirthdayModel> birthdayModels) {
+        this.birthdayModelList.addAll(birthdayModels);
+        notifyDataSetChanged();
     }
 
 }
