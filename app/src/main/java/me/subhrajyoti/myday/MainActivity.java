@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     private void fetchProjects() {
-            apiService.loadProjects()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(projectModels -> projectsAdapter.addAll(projectModels));
+        apiService.loadProjects()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(projectModels -> projectsAdapter.addAll(projectModels));
     }
 
     @SuppressLint("CheckResult")

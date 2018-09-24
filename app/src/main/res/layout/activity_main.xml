@@ -9,13 +9,15 @@
         android:orientation="vertical"
         android:id="@+id/birthdays">
 
+        <include layout="@layout/quickview_layout"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:textColor="#000000"
+            android:textColor="@color/colorBlack"
             android:textSize="25sp"
             android:text="Birthdays"/>
 
@@ -32,7 +34,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:textColor="#000000"
+            android:textColor="@color/colorBlack"
             android:textSize="25sp"
             android:text="Projects"/>
 
