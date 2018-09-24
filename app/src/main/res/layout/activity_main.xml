@@ -17,7 +17,6 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:textColor="@color/colorBlack"
             android:textSize="25sp"
             android:text="Birthdays"/>
 
@@ -34,7 +33,6 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:textColor="@color/colorBlack"
             android:textSize="25sp"
             android:text="Projects"/>
 

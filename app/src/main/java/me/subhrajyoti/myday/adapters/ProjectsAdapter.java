@@ -4,6 +4,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +53,12 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         int tasksCompleted = projectModel.getTasksCompleted();
         int tasksTotal = projectModel.getTasksTotal();
         projectsViewHolder.projectName.setText("Project: ".concat(projectModel.getProjectName()));
-        projectsViewHolder.projectProgress.setText(tasksCompleted + "/" + tasksTotal);
+
+        String progressText = tasksCompleted + "/" + tasksTotal;
+        SpannableString spannableString = new SpannableString(progressText);
+        spannableString.setSpan(new RelativeSizeSpan(1.3f), 0, progressText.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(1.2f), progressText.indexOf("/"), progressText.indexOf("/") + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        projectsViewHolder.projectProgress.setText(spannableString);
         projectsViewHolder.deadlineDays.setText(String.valueOf(Utils.daysLeftTillDeadline(projectModel.getDeadline())).concat(" days left"));
         projectsViewHolder.projectProgressBar.setProgress((int)((tasksCompleted * 1.0)/tasksTotal * 100));
         if (tasksTotal == tasksCompleted)

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/projectProgress"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:paddingTop="15dp"/>
 
         <TextView

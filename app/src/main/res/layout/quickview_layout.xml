@@ -26,7 +26,6 @@
             android:id="@+id/userName"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:textColor="@color/colorBlack"
             android:layout_below="@id/dayGreeting"
             android:text="Daisy"/>
 
