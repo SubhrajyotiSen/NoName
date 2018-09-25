@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,11 +101,12 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     }
 
     public void addAll(MyData myData) {
+        Gson gson = new Gson();
         List<ProjectModel> projectModelList = new ArrayList<>();
         JsonArray jsonArray = myData.getData();
         for (int i = 0; i < jsonArray.size(); i++) {
-            JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
-            projectModelList.add(new ProjectModel(jsonObject));
+            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
+            projectModelList.add(gson.fromJson(jsonElement, ProjectModel.class));
         }
         addAll(projectModelList);
 

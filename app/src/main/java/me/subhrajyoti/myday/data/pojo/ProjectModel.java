@@ -1,6 +1,5 @@
 package me.subhrajyoti.myday.data.pojo;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 public class ProjectModel {
@@ -18,13 +17,6 @@ public class ProjectModel {
         this.tasksCompleted = tasksCompleted;
         this.tasksTotal = tasksTotal;
         this.deadline = deadline;
-    }
-
-    public ProjectModel(JsonObject jsonObject) {
-        projectName = jsonObject.get("name").getAsString();
-        tasksCompleted = jsonObject.get("tasks_completed").getAsInt();
-        tasksTotal = jsonObject.get("tasks_total").getAsInt();
-        deadline = jsonObject.get("deadline").getAsString();
     }
 
     public String getProjectName() {

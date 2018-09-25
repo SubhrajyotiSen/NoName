@@ -2,15 +2,15 @@ package me.subhrajyoti.myday.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,7 +31,6 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
         this.birthdayModelList = new ArrayList<>();
 
     }
-
 
     @NonNull
     @Override
@@ -89,11 +88,12 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
     }
 
     public void addAll(MyData myData) {
+        Gson gson = new Gson();
         List<BirthdayModel> birthdayModelList = new ArrayList<>();
         JsonArray jsonArray = myData.getData();
         for (int i = 0; i < jsonArray.size(); i++) {
-            JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
-            birthdayModelList.add(new BirthdayModel(jsonObject));
+            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
+            birthdayModelList.add(gson.fromJson(jsonElement, BirthdayModel.class));
         }
         addAll(birthdayModelList);
     }
