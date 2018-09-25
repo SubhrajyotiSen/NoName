@@ -5,9 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="6dp"
-    android:layout_margin="5dp"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true" >
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,14 +16,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/projectName"
+            android:id="@+id/project_name"
             android:textStyle="bold"
             android:textAllCaps="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/projectProgress"
+            android:id="@+id/project_progress"
             android:textStyle="bold"
             android:textSize="25sp"
             android:paddingTop="15dp"/>
@@ -39,7 +37,7 @@
         <ProgressBar
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/projectProgressBar"
+            android:id="@+id/project_progressBar"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
@@ -60,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/deadlineDays"
+                android:id="@+id/deadline_days"
                 android:layout_alignParentEnd="true"
                 android:textSize="12sp"
                 android:textAllCaps="true" />

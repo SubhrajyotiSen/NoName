@@ -2,15 +2,17 @@ package me.subhrajyoti.myday.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,21 +21,21 @@ import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
+import me.subhrajyoti.myday.data.pojo.MyData;
 
 public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.BirthdayViewHolder> {
 
     private final List<BirthdayModel> birthdayModelList;
-    private final ClickListener clickListener;
 
-    public BirthdayAdapter(ClickListener clickListener) {
+    public BirthdayAdapter() {
         this.birthdayModelList = new ArrayList<>();
-        this.clickListener = clickListener;
+
     }
 
 
     @NonNull
     @Override
-    public BirthdayAdapter.BirthdayViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+    public BirthdayViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         BirthdayAdapter.BirthdayViewHolder birthdayViewHolder;
         View v;
         v = LayoutInflater.from(viewGroup.getContext()).inflate(
@@ -61,7 +63,7 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
         return birthdayModelList.size();
     }
 
-    class BirthdayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class BirthdayViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.birthday_person_image)
         ImageView birthdayPersonImage;
@@ -73,30 +75,27 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
         TextView birthdayWhen;
         @BindView(R.id.wish_birthday_button)
         TextView birthdayWishButton;
-        private WeakReference<ClickListener> listenerRef;
 
         public BirthdayViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            listenerRef = new WeakReference<>(clickListener);
-            birthdayWishButton.setOnClickListener(this);
         }
-
-        @Override
-        public void onClick(View view) {
-
-            listenerRef.get().onPositionClicked(getAdapterPosition());
-        }
-    }
-
-    public interface ClickListener {
-        void onPositionClicked(int position);
     }
 
     public void addAll(List<BirthdayModel> birthdayModels) {
         this.birthdayModelList.addAll(birthdayModels);
         notifyDataSetChanged();
+    }
+
+    public void addAll(MyData myData) {
+        List<BirthdayModel> birthdayModelList = new ArrayList<>();
+        JsonArray jsonArray = myData.getData();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+            birthdayModelList.add(new BirthdayModel(jsonObject));
+        }
+        addAll(birthdayModelList);
     }
 
 }

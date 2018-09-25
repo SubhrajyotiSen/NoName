@@ -5,28 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import me.subhrajyoti.myday.adapters.BirthdayAdapter;
-import me.subhrajyoti.myday.adapters.ProjectsAdapter;
+import me.subhrajyoti.myday.adapters.MultiTypeAdapter;
 import me.subhrajyoti.myday.data.remote.ApiService;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.birthdaysRecyclerView)
-    RecyclerView birthdaysRecyclerView;
-    @BindView(R.id.projectsRecyclerView)
-    RecyclerView projectRecyclerView;
-
-
-    private BirthdayAdapter birthdayAdapter;
-    private ProjectsAdapter projectsAdapter;
-
     private ApiService apiService;
+    private MultiTypeAdapter multiTypeAdapter;
+    @BindView(R.id.main_recyclerview)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,34 +29,22 @@ public class MainActivity extends AppCompatActivity {
 
         apiService = Utils.getApiService();
 
-        birthdayAdapter = new BirthdayAdapter(position -> Toast.makeText(MainActivity.this, "Wishing Happy Birthday", Toast.LENGTH_SHORT).show());
+        multiTypeAdapter = new MultiTypeAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(multiTypeAdapter);
+        recyclerView.setHasFixedSize(true);
 
-        birthdaysRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        birthdaysRecyclerView.setAdapter(birthdayAdapter);
-
-        projectsAdapter = new ProjectsAdapter(position -> Toast.makeText(MainActivity.this, "Project tapped", Toast.LENGTH_SHORT).show());
-
-        projectRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        projectRecyclerView.setAdapter(projectsAdapter);
-
-        fetchBirthdays();
-        fetchProjects();
+        fetchData();
 
     }
 
     @SuppressLint("CheckResult")
-    private void fetchProjects() {
-        apiService.loadProjects()
+    private void fetchData() {
+        apiService.loadData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(projectModels -> projectsAdapter.addAll(projectModels));
+                .subscribe(myDataList ->
+                    multiTypeAdapter.addAll(myDataList));
     }
 
-    @SuppressLint("CheckResult")
-    private void fetchBirthdays() {
-        apiService.loadBirthdays()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(birthdayModels -> birthdayAdapter.addAll(birthdayModels));
-    }
 }

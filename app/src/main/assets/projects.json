@@ -1,26 +1,80 @@
 [
   {
-    "name": "Phoenix",
-    "tasks_completed": 24,
-    "tasks_total": 73,
-    "deadline": "27/09/2018"
+    "type": "quickview",
+    "scroll": "horizontal",
+    "data": [{
+      "header": "Chat",
+      "subtext": "2 unread"
+    },
+      {
+        "header": "Attendance",
+        "subtext": "6hr 12 min"
+      },
+      {
+        "header": "Task",
+        "subtext": "3 Added"
+      }]
   },
+
   {
-    "name": "Phoenix2",
-    "tasks_completed": 75,
-    "tasks_total": 75,
-    "deadline": "29/09/2018"
+    "type": "projects",
+    "scroll": "horizontal",
+    "data": [{
+      "name": "Phoenix",
+      "tasks_completed": 24,
+      "tasks_total": 73,
+      "deadline": "27/09/2018"
+      },
+      {
+        "name": "Phoenix2",
+        "tasks_completed": 75,
+        "tasks_total": 75,
+        "deadline": "29/09/2018"
+      },
+      {
+        "name": "Phoenix3",
+        "tasks_completed": 24,
+        "tasks_total": 73,
+        "deadline": "27/09/2018"
+      },
+      {
+        "name": "Phoenix4",
+        "tasks_completed": 24,
+        "tasks_total": 73,
+        "deadline": "27/10/2018"
+      }
+    ]
   },
+
   {
-    "name": "Phoenix3",
-    "tasks_completed": 24,
-    "tasks_total": 73,
-    "deadline": "27/09/2018"
-  },
-  {
-    "name": "Phoenix4",
-    "tasks_completed": 24,
-    "tasks_total": 73,
-    "deadline": "27/10/2018"
+    "type": "birthdays",
+    "scroll": "horizontal",
+    "data": [{
+      "name": "John",
+      "role": "manager",
+      "birthday": "19/09/2018",
+      "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+    },
+      { "name": "John",
+        "role": "manager",
+        "birthday": "27/09/2018",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "John",
+        "role": "manager",
+        "birthday": "27/09/2018",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "John",
+        "role": "manager",
+        "birthday": "27/09/2018",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "John",
+        "role": "manager",
+        "birthday": "27/09/2018",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      }
+    ]
   }
 ]

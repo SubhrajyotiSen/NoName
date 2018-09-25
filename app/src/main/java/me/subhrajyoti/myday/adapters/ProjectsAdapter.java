@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.lang.ref.WeakReference;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,22 +23,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
+import me.subhrajyoti.myday.data.pojo.MyData;
 import me.subhrajyoti.myday.data.pojo.ProjectModel;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
 
     private final List<ProjectModel> projectModelList;
-    private final ClickListener clickListener;
 
-    public ProjectsAdapter(ClickListener clickListener) {
+    public ProjectsAdapter() {
         this.projectModelList = new ArrayList<>();
-        this.clickListener = clickListener;
     }
 
 
     @NonNull
     @Override
-    public ProjectsAdapter.ProjectsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+    public ProjectsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         ProjectsViewHolder projectsViewHolder;
         View v;
         v = LayoutInflater.from(viewGroup.getContext()).inflate(
@@ -47,7 +48,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectsAdapter.ProjectsViewHolder projectsViewHolder, int position) {
+    public void onBindViewHolder(@NonNull ProjectsViewHolder projectsViewHolder, int position) {
         ProjectModel projectModel = projectModelList.get(position);
 
         int tasksCompleted = projectModel.getTasksCompleted();
@@ -75,35 +76,37 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     }
 
 
-    class ProjectsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ProjectsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.projectName)
+        @BindView(R.id.project_name)
         TextView projectName;
-        @BindView(R.id.projectProgress)
+        @BindView(R.id.project_progress)
         TextView projectProgress;
-        @BindView(R.id.projectProgressBar)
+        @BindView(R.id.project_progressBar)
         ProgressBar projectProgressBar;
-        @BindView(R.id.deadlineDays)
+        @BindView(R.id.deadline_days)
         TextView deadlineDays;
-        private WeakReference<ClickListener> listenerRef;
 
         public ProjectsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            listenerRef = new WeakReference<>(clickListener);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-            listenerRef.get().onPositionClicked(getAdapterPosition());
         }
     }
 
     public void addAll(List<ProjectModel> projectModels) {
         this.projectModelList.addAll(projectModels);
         notifyDataSetChanged();
+    }
+
+    public void addAll(MyData myData) {
+        List<ProjectModel> projectModelList = new ArrayList<>();
+        JsonArray jsonArray = myData.getData();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+            projectModelList.add(new ProjectModel(jsonObject));
+        }
+        addAll(projectModelList);
+
     }
 }

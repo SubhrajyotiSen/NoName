@@ -45,4 +45,8 @@ public class Utils {
                 .build()
                 .create(ApiService.class);
     }
+
+    public static String capitalizeFirstCharacter(String text) {
+        return text.substring(0,1).toUpperCase().concat(text.substring(1));
+    }
 }
