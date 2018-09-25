@@ -2,6 +2,8 @@ package me.subhrajyoti.myday.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -58,8 +60,13 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int i) {
-        viewHolder.update(myDataList.get(i));
+    public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
+        if (position != 0)
+            if (position % 2 == 1)
+                viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.lightGray, null));
+            else
+                viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorWhite, null));
+        viewHolder.update(myDataList.get(position));
     }
 
 
@@ -93,6 +100,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @BindView(R.id.header_textView)
         TextView headerTextView;
 
+
         public ProjectsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -111,9 +119,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.recyclerview_row_card)
+        CardView recyclerview_row_card;
 
         public BaseViewHolder(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public abstract void update(MyData myData);
