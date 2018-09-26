@@ -6,9 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/dashboard_card"
     card_view:cardCornerRadius="6dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
-    card_view:cardElevation="6dp"
+    card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
