@@ -1,5 +1,38 @@
 [
   {
+    "type": "dashboard",
+    "scroll": "horizontal",
+    "data": [{
+      "amount": "15.2cr",
+      "status" : "up",
+      "change" : 2.1,
+      "desc" : "Total units sold",
+      "when" : "This year"
+    },
+      {
+        "amount": "34.6L",
+        "status" : "up",
+        "change" : 3.5,
+        "desc" : "Total sales",
+        "when" : "This year"
+      },
+      {
+        "amount": "15.2cr",
+        "status" : "down",
+        "change" : 10.3,
+        "desc" : "Total units sold",
+        "when" : "This year"
+      },
+      {
+        "amount": "1.7cr",
+        "status" : "up",
+        "change" : 2.1,
+        "desc" : "Total units sold",
+        "when" : "This year"
+      }
+    ]
+  },
+  {
     "type": "quickview",
     "scroll": "horizontal",
     "data": [{

@@ -24,7 +24,7 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNELS = 3;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNELS = 3, DASHBOARD = 4;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -55,6 +55,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case CHANNELS:
                 customViewHolder = new ChannelsAdapter(v);
                 break;
+            case DASHBOARD:
+                customViewHolder = new DashboardsAdapter(v);
+                break;
             default:
                 customViewHolder = new QuickViewHolder(v);
         }
@@ -65,7 +68,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
         if (position != 0)
-            if (position % 2 == 1)
+            if (position % 2 == 0)
                 viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.lightGray, null));
             else
                 viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorWhite, null));
@@ -92,6 +95,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return BIRTHDAY;
             case "channels":
                 return CHANNELS;
+            case "dashboard":
+                return DASHBOARD;
             default:
                 return QUICKVIEW;
         }
@@ -207,6 +212,29 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             channelAdapter.addAll(myData);
+        }
+    }
+
+    class DashboardsAdapter extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView dashboardRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        DashboardAdapter dashboardAdapter;
+
+        public DashboardsAdapter(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            dashboardAdapter = new DashboardAdapter();
+            dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            dashboardRecyclerView.setAdapter(dashboardAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
+            dashboardAdapter.addAll(myData);
         }
     }
 

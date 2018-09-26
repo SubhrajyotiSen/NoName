@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class DashboardModel {
 
-    private long amount;
+    private String amount;
     private String status;
     private float change;
     @SerializedName("desc")
@@ -12,7 +12,7 @@ public class DashboardModel {
     private String when;
 
 
-    public DashboardModel(long amount, String status, float change, String description, String when) {
+    public DashboardModel(String amount, String status, float change, String description, String when) {
         this.amount = amount;
         this.status = status;
         this.change = change;
@@ -20,7 +20,7 @@ public class DashboardModel {
         this.when = when;
     }
 
-    public long getAmount() {
+    public String getAmount() {
         return amount;
     }
 

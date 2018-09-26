@@ -15,4 +15,6 @@
     <color name="deepBlue">#212937</color>
     <color name="colorGreenCyan">#49b29d</color>
     <color name="colorRedOrange">#fe7147</color>
+    <color name="colorRed">#ff1744</color>
+    <color name="colorMediumLightGray">#b7b7b7</color>
 </resources>
