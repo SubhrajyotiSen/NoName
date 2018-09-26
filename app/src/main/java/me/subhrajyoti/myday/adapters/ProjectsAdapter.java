@@ -56,7 +56,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
         int tasksCompleted = projectModel.getTasksCompleted();
         int tasksTotal = projectModel.getTasksTotal();
-        projectsViewHolder.projectName.setText("Project: ".concat(projectModel.getProjectName()));
+        projectsViewHolder.projectName.setText(projectModel.getProjectName());
 
         String progressText = tasksCompleted + "/" + tasksTotal;
         SpannableString spannableString = new SpannableString(progressText);
@@ -81,7 +81,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
     class ProjectsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.project_name)
+        @BindView(R.id.project_name_textView)
         TextView projectName;
         @BindView(R.id.project_progress)
         TextView projectProgress;
