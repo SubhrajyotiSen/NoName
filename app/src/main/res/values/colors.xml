@@ -9,9 +9,10 @@
 
     <color name="hubblerBlue">#2196f3</color>
     <color name="colorIndigo">#2c387e</color>
-    <color name="colorGreen">#00a152</color>
+    <color name="colorLightGreen">#5ea411</color>
     <color name="colorFaintPurple">#B388FF</color>
     <color name="lightGray">#f0f2f8</color>
     <color name="deepBlue">#212937</color>
-
+    <color name="colorGreenCyan">#49b29d</color>
+    <color name="colorRedOrange">#fe7147</color>
 </resources>

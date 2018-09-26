@@ -3,6 +3,7 @@ package me.subhrajyoti.myday.adapters;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
 import me.subhrajyoti.myday.data.pojo.MyData;
@@ -64,9 +66,9 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         projectsViewHolder.deadlineDays.setText(String.valueOf(Utils.daysLeftTillDeadline(projectModel.getDeadline())).concat(" days left"));
         projectsViewHolder.projectProgressBar.setProgress((int)((tasksCompleted * 1.0)/tasksTotal * 100));
         if (tasksTotal == tasksCompleted)
-            projectsViewHolder.projectProgressBar.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+            projectsViewHolder.projectProgressBar.getProgressDrawable().setColorFilter(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorGreenCyan, null), PorterDuff.Mode.SRC_IN);
         else
-            projectsViewHolder.projectProgressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            projectsViewHolder.projectProgressBar.getProgressDrawable().setColorFilter(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorRedOrange, null), PorterDuff.Mode.SRC_IN);
 
 
     }
