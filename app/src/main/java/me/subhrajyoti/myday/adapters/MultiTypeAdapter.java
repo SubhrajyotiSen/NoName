@@ -24,7 +24,7 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNELS = 3, DASHBOARD = 4;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -52,11 +52,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case BIRTHDAY:
                 customViewHolder = new BirthdayViewHolder(v);
                 break;
-            case CHANNELS:
+            case CHANNEL:
                 customViewHolder = new ChannelsAdapter(v);
                 break;
             case DASHBOARD:
                 customViewHolder = new DashboardsAdapter(v);
+                break;
+            case TEAM_UPDATE:
+                customViewHolder = new TeamUpdatesViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -94,9 +97,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case "birthdays":
                 return BIRTHDAY;
             case "channels":
-                return CHANNELS;
+                return CHANNEL;
             case "dashboard":
                 return DASHBOARD;
+            case "team updates":
+                return TEAM_UPDATE;
             default:
                 return QUICKVIEW;
         }
@@ -235,6 +240,29 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             dashboardAdapter.addAll(myData);
+        }
+    }
+
+    class TeamUpdatesViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView teamUpdatesRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        TeamUpdateAdapter teamUpdatesAdapter;
+
+        public TeamUpdatesViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            teamUpdatesAdapter = new TeamUpdateAdapter();
+            teamUpdatesRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            teamUpdatesRecyclerView.setAdapter(teamUpdatesAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
+            teamUpdatesAdapter.addAll(myData);
         }
     }
 

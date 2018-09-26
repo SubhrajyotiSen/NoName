@@ -50,6 +50,32 @@
   },
 
   {
+    "type": "team updates",
+    "scroll": "horizontal",
+    "data": [{
+      "update": "on leave",
+      "topic": "Siva, Praveen",
+      "when": "Today"
+    },
+      {
+        "update": "meeting",
+        "topic": "UX Review",
+        "when": "Today"
+      },
+      {
+        "update": "on leave",
+        "topic": "Siva, Praveen",
+        "when": "Today"
+      },
+      {
+        "update": "meeting",
+        "topic": "UX Review",
+        "when": "Today"
+      }
+    ]
+  },
+
+  {
     "type": "projects",
     "scroll": "horizontal",
     "data": [{
