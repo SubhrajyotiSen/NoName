@@ -12,5 +12,6 @@
     <color name="colorGreen">#00a152</color>
     <color name="colorFaintPurple">#B388FF</color>
     <color name="lightGray">#f0f2f8</color>
+    <color name="deepBlue">#212937</color>
 
 </resources>

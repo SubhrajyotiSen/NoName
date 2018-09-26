@@ -24,7 +24,7 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNELS = 3;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -51,6 +51,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case BIRTHDAY:
                 customViewHolder = new BirthdayViewHolder(v);
+                break;
+            case CHANNELS:
+                customViewHolder = new ChannelsAdapter(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -87,6 +90,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return PROJECT;
             case "birthdays":
                 return BIRTHDAY;
+            case "channels":
+                return CHANNELS;
             default:
                 return QUICKVIEW;
         }
@@ -179,6 +184,29 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             quickViewCardAdapter.addAll(myData);
+        }
+    }
+
+    class ChannelsAdapter extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView channelRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        ChannelAdapter channelAdapter;
+
+        public ChannelsAdapter(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            channelAdapter = new ChannelAdapter();
+            channelRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            channelRecyclerView.setAdapter(channelAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
+            channelAdapter.addAll(myData);
         }
     }
 

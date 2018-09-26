@@ -24,7 +24,7 @@
       "tasks_completed": 24,
       "tasks_total": 73,
       "deadline": "27/09/2018"
-      },
+    },
       {
         "name": "Phoenix2",
         "tasks_completed": 75,
@@ -74,6 +74,28 @@
         "role": "manager",
         "birthday": "27/09/2018",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      }
+    ]
+  },
+  {
+    "type": "channels",
+    "scroll": "horizontal",
+    "data" : [
+      {
+        "name": "Food Fridays",
+        "members": 35
+      },
+      {
+        "name": "Engineering hacks",
+        "members": 52
+      },
+      {
+        "name": "Saturday Movies",
+        "members": 21
+      },
+      {
+        "name": "Serious Work",
+        "members": 340
       }
     ]
   }
