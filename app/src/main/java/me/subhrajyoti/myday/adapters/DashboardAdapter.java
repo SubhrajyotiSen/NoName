@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.data.pojo.ChannelModel;
 import me.subhrajyoti.myday.data.pojo.DashboardModel;
-import me.subhrajyoti.myday.data.pojo.MyData;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashboardViewHolder> {
 
@@ -72,19 +66,10 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
     }
 
     public void addAll(List<DashboardModel> dashboardModels) {
-        this.dashboardModels.addAll(dashboardModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<DashboardModel> dashboardModelsList = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            dashboardModelsList.add(gson.fromJson(jsonElement, DashboardModel.class));
+        if (this.dashboardModels.isEmpty()) {
+            this.dashboardModels.addAll(dashboardModels);
+            notifyDataSetChanged();
         }
-        addAll(dashboardModelsList);
     }
 
     class DashboardViewHolder extends RecyclerView.ViewHolder {

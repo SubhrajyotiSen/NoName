@@ -1,6 +1,5 @@
 package me.subhrajyoti.myday.adapters;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
@@ -14,10 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +21,6 @@ import butterknife.ButterKnife;
 import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.Utils;
-import me.subhrajyoti.myday.data.pojo.MyData;
 import me.subhrajyoti.myday.data.pojo.ProjectModel;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
@@ -98,19 +92,10 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     }
 
     public void addAll(List<ProjectModel> projectModels) {
-        this.projectModelList.addAll(projectModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<ProjectModel> projectModelList = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            projectModelList.add(gson.fromJson(jsonElement, ProjectModel.class));
+        if (this.projectModelList.isEmpty()) {
+            this.projectModelList.addAll(projectModels);
+            notifyDataSetChanged();
         }
-        addAll(projectModelList);
-
     }
+
 }

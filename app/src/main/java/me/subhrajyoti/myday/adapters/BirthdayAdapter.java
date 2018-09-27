@@ -83,19 +83,10 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
     }
 
     public void addAll(List<BirthdayModel> birthdayModels) {
-        this.birthdayModelList.addAll(birthdayModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<BirthdayModel> birthdayModelList = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            birthdayModelList.add(gson.fromJson(jsonElement, BirthdayModel.class));
+        if (this.birthdayModelList.isEmpty()) {
+            this.birthdayModelList.addAll(birthdayModels);
+            notifyDataSetChanged();
         }
-        addAll(birthdayModelList);
     }
 
 }

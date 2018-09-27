@@ -8,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,6 @@ import butterknife.ButterKnife;
 import me.subhrajyoti.myday.ColorGenerator;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.data.pojo.EventModel;
-import me.subhrajyoti.myday.data.pojo.MyData;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
@@ -55,20 +50,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     public void addAll(List<EventModel> eventModels) {
-        this.eventModels.addAll(eventModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<EventModel> eventModels = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            eventModels.add(gson.fromJson(jsonElement, EventModel.class));
+        if (this.eventModels.isEmpty()) {
+            this.eventModels.addAll(eventModels);
+            notifyDataSetChanged();
         }
-        addAll(eventModels);
-
     }
 
     class EventViewHolder  extends RecyclerView.ViewHolder {

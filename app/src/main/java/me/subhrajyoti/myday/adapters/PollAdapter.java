@@ -7,17 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.data.pojo.MyData;
 import me.subhrajyoti.myday.data.pojo.PollModel;
 
 public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder> {
@@ -52,20 +47,10 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder
     }
 
     public void addAll(List<PollModel> pollModels) {
-        this.pollModels.addAll(pollModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<PollModel> pollModels = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            pollModels.add(gson.fromJson(jsonElement, PollModel.class));
+        if (this.pollModels.isEmpty()) {
+            this.pollModels.addAll(pollModels);
+            notifyDataSetChanged();
         }
-        addAll(pollModels);
-
     }
 
     class PollViewVolder extends RecyclerView.ViewHolder {

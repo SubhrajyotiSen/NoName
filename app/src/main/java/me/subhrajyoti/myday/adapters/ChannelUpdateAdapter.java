@@ -8,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,6 @@ import butterknife.ButterKnife;
 import me.subhrajyoti.myday.ColorGenerator;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;
-import me.subhrajyoti.myday.data.pojo.MyData;
 
 public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdapter.ChannelUpdateViewHolder> {
 
@@ -56,21 +51,11 @@ public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdap
         return channelUpdateModels.size();
     }
     public void addAll(List<ChannelUpdateModel> channelUpdateModels) {
-        this.channelUpdateModels.addAll(channelUpdateModels);
-        notifyDataSetChanged();
-    }
-
-    public void addAll(MyData myData) {
-        Gson gson = new Gson();
-        List<ChannelUpdateModel> channelUpdateModels = new ArrayList<>();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i).getAsJsonObject();
-            channelUpdateModels.add(gson.fromJson(jsonElement, ChannelUpdateModel.class));
+        if (this.channelUpdateModels.isEmpty()) {
+            this.channelUpdateModels.addAll(channelUpdateModels);
+            notifyDataSetChanged();
         }
-        addAll(channelUpdateModels);
     }
-
 
     class ChannelUpdateViewHolder extends RecyclerView.ViewHolder {
 

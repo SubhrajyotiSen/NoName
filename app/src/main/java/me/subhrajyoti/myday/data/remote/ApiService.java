@@ -11,5 +11,4 @@ public interface ApiService {
     @GET("/v2/5bacb42c3100003800654930")
     Single<List<MyData>> loadData();
 
-
 }
