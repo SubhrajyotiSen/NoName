@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.Utils;
+import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.ProjectModel;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {

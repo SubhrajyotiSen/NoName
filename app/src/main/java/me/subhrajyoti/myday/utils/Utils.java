@@ -1,4 +1,4 @@
-package me.subhrajyoti.myday;
+package me.subhrajyoti.myday.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import me.subhrajyoti.myday.MyDate;
+import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.data.remote.ApiService;
 import okhttp3.Cache;
 import okhttp3.Interceptor;

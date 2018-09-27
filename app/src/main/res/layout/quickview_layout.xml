@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date_textview"
@@ -19,7 +19,7 @@
             android:layout_marginTop="10dp"
             />
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/day_textview"

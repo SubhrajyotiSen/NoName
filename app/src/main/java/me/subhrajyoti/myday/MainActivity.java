@@ -12,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import me.subhrajyoti.myday.adapters.MultiTypeAdapter;
 import me.subhrajyoti.myday.data.remote.ApiService;
+import me.subhrajyoti.myday.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 

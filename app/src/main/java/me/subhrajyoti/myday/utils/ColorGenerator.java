@@ -1,11 +1,11 @@
-package me.subhrajyoti.myday;
+package me.subhrajyoti.myday.utils;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ColorGenerator {
 
-    static List<Integer> colors = Arrays.asList(
+    private static List<Integer> colors = Arrays.asList(
             0xffe57373,
             0xfff06292,
             0xffba68c8,

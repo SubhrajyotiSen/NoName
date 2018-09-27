@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/birthday_when"
@@ -31,20 +31,20 @@
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"/>
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/birthday_person_name"
             android:layout_gravity="center_horizontal" />
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/birthday_person_role"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="5dp"/>
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wish_birthday_button"

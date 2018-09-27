@@ -13,7 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.subhrajyoti.myday.ColorGenerator;
+import me.subhrajyoti.myday.utils.ColorGenerator;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;
 

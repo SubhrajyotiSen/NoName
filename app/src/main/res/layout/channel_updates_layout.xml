@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
@@ -21,7 +21,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/channel_name_textView" />
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:minHeight="80dp"
@@ -45,7 +45,7 @@
                 android:id="@+id/channel_like_imageView"
                 android:layout_marginStart="10dp" />
 
-            <me.subhrajyoti.myday.HubblerTextView
+            <me.subhrajyoti.myday.views.HubblerTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -59,7 +59,7 @@
                 android:id="@+id/channel_comment_imageView"
                 android:layout_marginStart="20dp" />
 
-            <me.subhrajyoti.myday.HubblerTextView
+            <me.subhrajyoti.myday.views.HubblerTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

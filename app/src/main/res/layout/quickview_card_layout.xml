@@ -16,14 +16,14 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp">
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/card_header"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"/>
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_header"

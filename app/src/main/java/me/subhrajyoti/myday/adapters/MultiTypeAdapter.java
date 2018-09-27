@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.Utils;
+import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 import me.subhrajyoti.myday.data.pojo.ChannelModel;
 import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;

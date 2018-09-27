@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/update_textview" />
 
-        <me.subhrajyoti.myday.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -29,7 +29,7 @@
             android:layout_marginEnd="30dp"
             android:id="@+id/topic_textview" />
 
-        <me.subhrajyoti.myday.HubblerTextView
+        <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

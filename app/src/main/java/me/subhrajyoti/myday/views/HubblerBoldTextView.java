@@ -1,4 +1,4 @@
-package me.subhrajyoti.myday;
+package me.subhrajyoti.myday.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
