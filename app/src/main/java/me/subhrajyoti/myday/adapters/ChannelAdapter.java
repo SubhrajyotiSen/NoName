@@ -45,9 +45,10 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ChannelV
         return channelModels.size();
     }
 
-    public void addAll(List<ChannelModel> channelModels) {
+    public void addAll(List<Object> channelModels) {
         if (this.channelModels.isEmpty()) {
-            this.channelModels.addAll(channelModels);
+            for (Object object: channelModels)
+                this.channelModels.add((ChannelModel) object);
             notifyDataSetChanged();
         }
     }

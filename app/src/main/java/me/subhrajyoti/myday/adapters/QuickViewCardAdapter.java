@@ -51,9 +51,10 @@ public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdap
         return quickViewModels.size();
     }
 
-    public void addAll(List<QuickViewModel> quickViewModels) {
+    public void addAll(List<Object> quickViewModels) {
         if (this.quickViewModels.isEmpty()) {
-            this.quickViewModels.addAll(quickViewModels);
+            for (Object object : quickViewModels)
+                this.quickViewModels.add((QuickViewModel) object);
             notifyDataSetChanged();
         }
     }

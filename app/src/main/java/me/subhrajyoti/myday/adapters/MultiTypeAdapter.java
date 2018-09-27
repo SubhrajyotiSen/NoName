@@ -12,10 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,15 +33,6 @@ import me.subhrajyoti.myday.data.pojo.TeamUpdateModel;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private List<ProjectModel> projectModels = new ArrayList<>();
-    private List<BirthdayModel> birthdayModels = new ArrayList<>();
-    private List<QuickViewModel> quickViewModels = new ArrayList<>();
-    private List<ChannelModel> channelModels = new ArrayList<>();
-    private List<DashboardModel> dashboardModels = new ArrayList<>();
-    private List<TeamUpdateModel> teamUpdateModels = new ArrayList<>();
-    private List<PollModel> pollModels = new ArrayList<>();
-    private List<EventModel> eventModels = new ArrayList<>();
-    private List<ChannelUpdateModel> channelUpdateModels = new ArrayList<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
             POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8;
@@ -122,31 +109,31 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         for (MyData myData : myDataList) {
             switch (myData.getType()) {
                 case "projects":
-                    makeArrayListFromJsonArray(myData, projectModels, ProjectModel.class);
+                    myData.makeArrayListFromJsonArray(ProjectModel.class);
                     break;
                 case "birthdays":
-                    makeArrayListFromJsonArray(myData, birthdayModels, BirthdayModel.class);
+                    myData.makeArrayListFromJsonArray(BirthdayModel.class);
                     break;
                 case "channels":
-                    makeArrayListFromJsonArray(myData, channelModels, ChannelModel.class);
+                    myData.makeArrayListFromJsonArray(ChannelModel.class);
                     break;
                 case "dashboard":
-                    makeArrayListFromJsonArray(myData, dashboardModels, DashboardModel.class);
+                    myData.makeArrayListFromJsonArray(DashboardModel.class);
                     break;
                 case "team updates":
-                    makeArrayListFromJsonArray(myData, teamUpdateModels, TeamUpdateModel.class);
+                    myData.makeArrayListFromJsonArray(TeamUpdateModel.class);
                     break;
                 case "polls":
-                    makeArrayListFromJsonArray(myData, pollModels, PollModel.class);
+                    myData.makeArrayListFromJsonArray(PollModel.class);
                     break;
                 case "events":
-                    makeArrayListFromJsonArray(myData, eventModels, EventModel.class);
+                    myData.makeArrayListFromJsonArray(EventModel.class);
                     break;
                 case "channel update":
-                    makeArrayListFromJsonArray(myData, channelUpdateModels, ChannelUpdateModel.class);
+                    myData.makeArrayListFromJsonArray(ChannelUpdateModel.class);
                     break;
                 default:
-                    makeArrayListFromJsonArray(myData, quickViewModels, QuickViewModel.class);
+                    myData.makeArrayListFromJsonArray(QuickViewModel.class);
             }
         }
         notifyDataSetChanged();
@@ -197,7 +184,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            projectsAdapter.addAll(projectModels);
+            projectsAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -233,7 +220,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            birthdayAdapter.addAll(birthdayModels);
+            birthdayAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -262,7 +249,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
         @Override
         public void update(MyData myData) {
-            quickViewCardAdapter.addAll(quickViewModels);
+            quickViewCardAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -285,7 +272,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            channelAdapter.addAll(channelModels);
+            channelAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -308,7 +295,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            dashboardAdapter.addAll(dashboardModels);
+            dashboardAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -331,7 +318,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            teamUpdatesAdapter.addAll(teamUpdateModels);
+            teamUpdatesAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -355,7 +342,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
-            pollAdapter.addAll(pollModels);
+            pollAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -378,7 +365,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
-            eventAdapter.addAll(eventModels);
+            eventAdapter.addAll(myData.getDataList());
 
         }
     }
@@ -402,19 +389,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
-            channelUpdateAdapter.addAll(channelUpdateModels);
+            channelUpdateAdapter.addAll(myData.getDataList());
         }
     }
-
-     private <T> void makeArrayListFromJsonArray(MyData myData, List<T> list, Class<T> tClass) {
-        Gson gson = new Gson();
-        JsonArray jsonArray = myData.getData();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonElement jsonElement = jsonArray.get(i);
-            list.add(gson.fromJson(jsonElement, tClass));
-        }
-    }
-
-
-
 }

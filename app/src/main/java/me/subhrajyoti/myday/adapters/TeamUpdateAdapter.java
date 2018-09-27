@@ -46,9 +46,10 @@ public class TeamUpdateAdapter extends RecyclerView.Adapter<TeamUpdateAdapter.Te
         return teamUpdateModels.size();
     }
 
-    public void addAll(List<TeamUpdateModel> teamUpdateModels) {
+    public void addAll(List<Object> teamUpdateModels) {
         if (this.teamUpdateModels.isEmpty()) {
-            this.teamUpdateModels.addAll(teamUpdateModels);
+            for (Object object : teamUpdateModels)
+                this.teamUpdateModels.add((TeamUpdateModel) object);
             notifyDataSetChanged();
         }
     }

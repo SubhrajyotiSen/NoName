@@ -50,9 +50,11 @@ public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdap
     public int getItemCount() {
         return channelUpdateModels.size();
     }
-    public void addAll(List<ChannelUpdateModel> channelUpdateModels) {
+
+    public void addAll(List<Object> channelUpdateModels) {
         if (this.channelUpdateModels.isEmpty()) {
-            this.channelUpdateModels.addAll(channelUpdateModels);
+            for(Object object: channelUpdateModels)
+                this.channelUpdateModels.add((ChannelUpdateModel) object);
             notifyDataSetChanged();
         }
     }

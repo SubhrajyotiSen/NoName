@@ -67,7 +67,7 @@ public class Utils {
                 .baseUrl("http://www.mocky.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
+                //.client(okHttpClient)
                 .build()
                 .create(ApiService.class);
     }

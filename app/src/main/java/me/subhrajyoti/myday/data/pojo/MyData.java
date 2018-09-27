@@ -1,20 +1,23 @@
 package me.subhrajyoti.myday.data.pojo;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyData {
 
     private String type;
     private String scroll;
     private JsonArray data;
-    private ArrayList<BaseModel> models;
+    private List<Object> dataList;
 
-    public MyData(String type, String scroll, JsonArray data) {
-        this.type = type;
-        this.scroll = scroll;
-        this.data = data;
+    public MyData() {
+        dataList = new ArrayList<>();
     }
 
     public String getType() {
@@ -27,6 +30,18 @@ public class MyData {
 
     public String getScroll() {
         return scroll;
+    }
+
+    public List<Object> getDataList() {
+        return dataList;
+    }
+
+    public  <T> void makeArrayListFromJsonArray(Class<T> tClass) {
+        Gson gson = new Gson();
+        for (int i = 0; i < data.size(); i++) {
+            JsonElement jsonElement = data.get(i);
+            dataList.add(gson.fromJson(jsonElement, tClass));
+        }
     }
 
 }

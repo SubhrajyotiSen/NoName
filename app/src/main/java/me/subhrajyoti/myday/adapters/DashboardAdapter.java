@@ -65,9 +65,10 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         return dashboardModels.size();
     }
 
-    public void addAll(List<DashboardModel> dashboardModels) {
+    public void addAll(List<Object> dashboardModels) {
         if (this.dashboardModels.isEmpty()) {
-            this.dashboardModels.addAll(dashboardModels);
+            for(Object object: dashboardModels)
+                this.dashboardModels.add((DashboardModel) object);
             notifyDataSetChanged();
         }
     }

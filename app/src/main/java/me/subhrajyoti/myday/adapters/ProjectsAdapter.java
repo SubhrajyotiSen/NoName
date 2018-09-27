@@ -91,9 +91,10 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         }
     }
 
-    public void addAll(List<ProjectModel> projectModels) {
+    public void addAll(List<Object> projectModels) {
         if (this.projectModelList.isEmpty()) {
-            this.projectModelList.addAll(projectModels);
+            for (Object object : projectModels)
+                this.projectModelList.add((ProjectModel) object);
             notifyDataSetChanged();
         }
     }

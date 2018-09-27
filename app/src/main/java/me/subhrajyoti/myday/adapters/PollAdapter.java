@@ -46,9 +46,10 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder
         return pollModels.size();
     }
 
-    public void addAll(List<PollModel> pollModels) {
+    public void addAll(List<Object> pollModels) {
         if (this.pollModels.isEmpty()) {
-            this.pollModels.addAll(pollModels);
+            for (Object object : pollModels)
+                this.pollModels.add((PollModel) object);
             notifyDataSetChanged();
         }
     }

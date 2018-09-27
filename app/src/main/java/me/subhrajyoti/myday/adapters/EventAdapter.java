@@ -49,9 +49,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         return eventModels.size();
     }
 
-    public void addAll(List<EventModel> eventModels) {
+    public void addAll(List<Object> eventModels) {
         if (this.eventModels.isEmpty()) {
-            this.eventModels.addAll(eventModels);
+            for(Object object: eventModels)
+                this.eventModels.add((EventModel) object);
             notifyDataSetChanged();
         }
     }
