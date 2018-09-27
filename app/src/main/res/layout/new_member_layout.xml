@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="260dp"
+    android:id="@+id/new_member_card"
+    card_view:cardCornerRadius="6dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    card_view:cardBackgroundColor="@color/colorLightBrown">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_decor_bg">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_decor_top"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:paddingTop="40dp"
+            android:id="@+id/new_member_imageView"
+            android:layout_centerHorizontal="true" />
+
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_member_imageView"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/new_member_name_textView"
+            android:textSize="18sp"
+            android:paddingTop="10dp"/>
+
+        <me.subhrajyoti.myday.views.HubblerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_member_name_textView"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/new_member_role_textView"
+            />
+
+        <me.subhrajyoti.myday.views.HubblerBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_member_role_textView"
+            android:text="Joined Today"
+            android:textAllCaps="true"
+            android:textColor="@color/colorOrange"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/new_member_join_date"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:textColor="@color/hubblerBlue"
+            android:background="@drawable/rounded_color_button_with_border"
+            android:layout_below="@+id/new_member_join_date"
+            android:id="@+id/new_member_wish_button"
+            android:text="Welcome Aboard!!"
+            android:layout_centerHorizontal="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
+import me.subhrajyoti.myday.data.pojo.NewMemberModel;
 import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 import me.subhrajyoti.myday.data.pojo.ChannelModel;
@@ -35,7 +36,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     private List<MyData> myDataList = new ArrayList<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
-            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8;
+            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -80,6 +81,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case CHANNEL_UPDATE:
                 customViewHolder = new ChannelUpdatesViewHolder(v);
+                break;
+            case NEW_MEMBER:
+                customViewHolder = new NewMembersViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -132,6 +136,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 case "channel update":
                     myData.makeArrayListFromJsonArray(ChannelUpdateModel.class);
                     break;
+                case "new members":
+                    myData.makeArrayListFromJsonArray(NewMemberModel.class);
+                    break;
                 default:
                     myData.makeArrayListFromJsonArray(QuickViewModel.class);
             }
@@ -158,6 +165,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return EVENT;
             case "channel update":
                 return CHANNEL_UPDATE;
+            case "new members":
+                return NEW_MEMBER;
             default:
                 return QUICKVIEW;
         }
@@ -390,6 +399,29 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
             channelUpdateAdapter.addAll(myData.getDataList());
+        }
+    }
+
+    class NewMembersViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView newMembersRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        NewMemberAdapter newMemberAdapter;
+
+        public NewMembersViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            newMemberAdapter = new NewMemberAdapter();
+            newMembersRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            newMembersRecyclerView.setAdapter(newMemberAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(myData.getType());
+            newMemberAdapter.addAll(myData.getDataList());
         }
     }
 }

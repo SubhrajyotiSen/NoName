@@ -246,5 +246,31 @@
         "members": 340
       }
     ]
+  },
+  {
+    "type": "new members",
+    "scroll": "horizontal",
+    "data": [
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Eula Soto",
+        "role": "Owner of Omega Productions Pvt Ltd"
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Eula Soto",
+        "role": "Owner of Omega Productions Pvt Ltd"
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Eula Soto",
+        "role": "Owner of Omega Productions Pvt Ltd"
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Eula Soto",
+        "role": "Owner of Omega Productions Pvt Ltd"
+      }
+    ]
   }
 ]
