@@ -114,7 +114,35 @@
       }
     ]
   },
-
+  {
+    "type": "channel update",
+    "scroll": "horizontal",
+    "data": [{
+      "channel_name": "design channel",
+      "update": "Start making decisions with the help of AI",
+      "likes": 285,
+      "comments": 35
+    },
+      {
+        "channel_name": "design channel",
+        "update": "Start making decisions with the help of AI",
+        "likes": 285,
+        "comments": 35
+      },
+      {
+        "channel_name": "design channel",
+        "update": "Start making decisions with the help of AI",
+        "likes": 285,
+        "comments": 35
+      },
+      {
+        "channel_name": "design channel",
+        "update": "Start making decisions with the help of AI",
+        "likes": 285,
+        "comments": 35
+      }
+    ]
+  },
   {
     "type": "projects",
     "scroll": "horizontal",

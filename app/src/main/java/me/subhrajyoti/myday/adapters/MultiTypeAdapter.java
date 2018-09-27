@@ -24,7 +24,8 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5, POLL = 6, EVENT = 7;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5, POLL = 6, EVENT = 7,
+            CHANNEL_UPDATE = 8;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -66,6 +67,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case EVENT:
                 customViewHolder = new EventsViewHolder(v);
+                break;
+            case CHANNEL_UPDATE:
+                customViewHolder = new ChannelUpdatesViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -112,6 +116,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return POLL;
             case "events":
                 return EVENT;
+            case "channel update":
+                return CHANNEL_UPDATE;
             default:
                 return QUICKVIEW;
         }
@@ -321,6 +327,29 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             headerTextView.setText(myData.getType());
             eventAdapter.addAll(myData);
 
+        }
+    }
+
+    class ChannelUpdatesViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView channelUpdatesRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        ChannelUpdateAdapter channelUpdateAdapter;
+
+        public ChannelUpdatesViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            channelUpdateAdapter = new ChannelUpdateAdapter();
+            channelUpdatesRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            channelUpdatesRecyclerView.setAdapter(channelUpdateAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(myData.getType());
+            channelUpdateAdapter.addAll(myData);
         }
     }
 

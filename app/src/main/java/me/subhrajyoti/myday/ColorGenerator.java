@@ -22,7 +22,8 @@ public class ColorGenerator {
             0xffffd54f,
             0xffffb74d,
             0xffa1887f,
-            0xff90a4ae
+            0xff90a4ae,
+            0xffbee8ed
     );
 
     public static int getColor(int i) {
