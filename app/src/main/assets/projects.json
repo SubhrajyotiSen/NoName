@@ -59,6 +59,37 @@
     ]
   },
   {
+    "type": "events",
+    "scroll": "horizontal",
+    "data": [{
+      "date" : "Thu 27-30 Jul",
+      "name" : "Review Meet",
+      "venue": "conf room"
+    },
+      {
+        "date" : "Thu 27-30 Jul",
+        "name" : "Review Meet",
+        "venue": "conf room"
+      },
+      {
+        "date" : "Thu 27-30 Jul",
+        "name" : "Review Meet",
+        "venue": "conf room"
+      },
+      {
+        "date" : "Thu 27-30 Jul",
+        "name" : "Review Meet",
+        "venue": "conf room"
+      },
+      {
+        "date" : "Thu 27-30 Jul",
+        "name" : "Review Meet",
+        "venue": "conf room"
+      }
+    ]
+  },
+
+  {
     "type": "team updates",
     "scroll": "horizontal",
     "data": [{

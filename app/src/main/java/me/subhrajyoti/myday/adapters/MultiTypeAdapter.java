@@ -24,7 +24,7 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5, POLL = 6;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5, POLL = 6, EVENT = 7;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -63,6 +63,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case POLL:
                 customViewHolder = new PollsViewHolder(v);
+                break;
+            case EVENT:
+                customViewHolder = new EventsViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -107,6 +110,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return TEAM_UPDATE;
             case "polls":
                 return POLL;
+            case "events":
+                return EVENT;
             default:
                 return QUICKVIEW;
         }
@@ -292,6 +297,30 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
             pollAdapter.addAll(myData);
+        }
+    }
+
+    class EventsViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView eventsRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        EventAdapter eventAdapter;
+
+        public EventsViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            eventAdapter = new EventAdapter();
+            eventsRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            eventsRecyclerView.setAdapter(eventAdapter);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(myData.getType());
+            eventAdapter.addAll(myData);
+
         }
     }
 
