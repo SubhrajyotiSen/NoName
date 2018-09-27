@@ -10,14 +10,13 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
+        <me.subhrajyoti.myday.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:id="@+id/header_textView"
             android:layout_margin="5dp"
-            android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textAllCaps="true"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

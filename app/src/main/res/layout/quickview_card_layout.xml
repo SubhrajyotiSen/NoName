@@ -16,13 +16,12 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp">
 
-        <TextView
+        <me.subhrajyoti.myday.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/card_header"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"/>
-        <TextView
+            android:textColor="@color/colorWhite" />
+        <me.subhrajyoti.myday.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_header"

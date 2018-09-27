@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:minWidth="200dp">
 
-            <TextView
+            <me.subhrajyoti.myday.HubblerTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -43,7 +43,7 @@
                 android:background="@android:color/darker_gray"
                 android:id="@+id/channelViewDivider" />
 
-            <TextView
+            <me.subhrajyoti.myday.HubblerTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

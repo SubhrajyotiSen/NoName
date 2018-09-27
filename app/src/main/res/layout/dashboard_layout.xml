@@ -18,18 +18,17 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp">
 
-        <TextView
+        <me.subhrajyoti.myday.HubblerBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/amount_textview"
-            android:textStyle="bold"
             android:textSize="25sp"/>
-        <TextView
+        <me.subhrajyoti.myday.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/amount_textview"
             android:id="@+id/desc_textview"/>
-        <TextView
+        <me.subhrajyoti.myday.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/desc_textview"
@@ -46,7 +45,7 @@
             android:layout_above="@+id/desc_textview"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="4dp"/>
-        <TextView
+        <me.subhrajyoti.myday.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/change_textview"
