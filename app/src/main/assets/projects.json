@@ -1,5 +1,31 @@
 [
   {
+    "type": "quickview",
+    "scroll": "horizontal",
+    "data": [{
+      "header": "Chat",
+      "subtext": "2 unread"
+    },
+      {
+        "header": "Attendance",
+        "subtext": "6hr 12 min"
+      },
+      {
+        "header": "Task",
+        "subtext": "3 Added"
+      },
+      {
+        "header": "Task",
+        "subtext": "3 Added"
+      },
+      {
+        "header": "Task",
+        "subtext": "3 Added"
+      }
+    ]
+  },
+
+  {
     "type": "dashboard",
     "scroll": "horizontal",
     "data": [{
@@ -32,23 +58,6 @@
       }
     ]
   },
-  {
-    "type": "quickview",
-    "scroll": "horizontal",
-    "data": [{
-      "header": "Chat",
-      "subtext": "2 unread"
-    },
-      {
-        "header": "Attendance",
-        "subtext": "6hr 12 min"
-      },
-      {
-        "header": "Task",
-        "subtext": "3 Added"
-      }]
-  },
-
   {
     "type": "team updates",
     "scroll": "horizontal",
@@ -133,6 +142,27 @@
         "role": "manager",
         "birthday": "27/09/2018",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      }
+    ]
+  },
+  {
+    "type": "polls",
+    "scroll" : "horizontal",
+    "data": [{
+      "deadline": "Ends in 20 minutes",
+      "question": "When should the next in-house workshop be on?"
+    },
+      {
+        "deadline": "Ends in 30 minutes",
+        "question": "Where should the next team outing be?"
+      },
+      {
+        "deadline": "Ends in 1 hour",
+        "question": "This is going to a very long question about something very boring and complicated?"
+      },
+      {
+        "deadline": "Ends in 2 days",
+        "question": "This is going to a another very long question about something very boring and complicated?"
       }
     ]
   },

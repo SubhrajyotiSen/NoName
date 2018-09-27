@@ -24,7 +24,7 @@ import me.subhrajyoti.myday.data.pojo.MyData;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> myDataList = new ArrayList<>();
-    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5;
+    private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5, POLL = 6;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -60,6 +60,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case TEAM_UPDATE:
                 customViewHolder = new TeamUpdatesViewHolder(v);
+                break;
+            case POLL:
+                customViewHolder = new PollsViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -102,6 +105,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return DASHBOARD;
             case "team updates":
                 return TEAM_UPDATE;
+            case "polls":
+                return POLL;
             default:
                 return QUICKVIEW;
         }
@@ -263,6 +268,30 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             teamUpdatesAdapter.addAll(myData);
+        }
+    }
+
+    class PollsViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.generic_recyclerview)
+        RecyclerView pollssRecyclerView;
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+        PollAdapter pollAdapter;
+
+        public PollsViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            pollAdapter = new PollAdapter();
+            pollssRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            pollssRecyclerView.setAdapter(pollAdapter);
+
+        }
+
+        @Override
+        public void update(MyData myData) {
+            headerTextView.setText(myData.getType());
+            pollAdapter.addAll(myData);
         }
     }
 
