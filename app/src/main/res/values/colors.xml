@@ -12,7 +12,7 @@
     <color name="colorLightGreen">#5ea411</color>
     <color name="colorFaintPurple">#B388FF</color>
     <color name="lightGray">#f0f2f8</color>
-    <color name="deepBlue">#212937</color>
+    <color name="colorDeepBlue">#212937</color>
     <color name="colorGreenCyan">#49b29d</color>
     <color name="colorRedOrange">#fe7147</color>
     <color name="colorRed">#ff1744</color>
@@ -20,4 +20,5 @@
     <color name="colorYellow">#f8e71c</color>
     <color name="colorLightBrown">#fce9d2</color>
     <color name="colorOrange">#f79434</color>
+    <color name="colorDarkBLue">#1e22e5</color>
 </resources>

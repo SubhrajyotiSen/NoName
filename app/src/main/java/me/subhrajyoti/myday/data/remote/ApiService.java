@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("/v2/5bad12d93300006e000eb504")
+    @GET("/v2/5badd208330000c8540eb6bc")
     Single<List<MyData>> loadData();
 
 }
