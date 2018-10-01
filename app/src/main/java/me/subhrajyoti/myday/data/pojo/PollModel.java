@@ -4,7 +4,7 @@ public class PollModel {
 
     private String deadline;
     private String question;
-    
+
     public String getDeadline() {
         return deadline;
     }

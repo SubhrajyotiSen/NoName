@@ -18,8 +18,8 @@
         <ImageView
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_decor_top"/>
+            android:layout_height="60dp"
+            android:background="@drawable/ic_decor_top"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="150dp"

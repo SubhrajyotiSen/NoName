@@ -88,6 +88,37 @@
     ]
   },
   {
+    "type": "tasks",
+    "scroll": "vertical",
+    "data": [
+      {
+        "title": "Fill-up your coaching worksheets",
+        "priority": "high",
+        "when": "today"
+      },
+      {
+        "title": "Start your updates",
+        "priority": "low",
+        "when": "today"
+      },
+      {
+        "title": "Advance Forum Training",
+        "priority": "none",
+        "when": "today"
+      },
+      {
+        "title": "Join a Reginal forum",
+        "priority": "high",
+        "when": "tomorrow"
+      },
+      {
+        "title": "Plan a retreat in Europe",
+        "priority": "low",
+        "when": "tomorrow"
+      }
+    ]
+  },
+  {
     "type": "employee updates",
     "scroll": "horizontal",
     "data": [

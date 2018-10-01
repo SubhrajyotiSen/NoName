@@ -48,7 +48,7 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
         birthdayViewHolder.role.setText(birthdayModel.getRole());
         birthdayViewHolder.birthdayWhen.setText(Utils.birthdayTimeToDisplay(birthdayModel.getBirthday()));
 
-        Picasso.get().load(birthdayModelList.get(position).getImageURL()).into(birthdayViewHolder.birthdayPersonImage);
+        Picasso.get().load(birthdayModelList.get(position).getImageURL()).fit().centerCrop().into(birthdayViewHolder.birthdayPersonImage);
         // TODO: use something like Shimmer as a placeholder while loading image
 
     }

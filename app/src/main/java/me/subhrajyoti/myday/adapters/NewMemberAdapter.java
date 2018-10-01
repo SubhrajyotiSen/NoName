@@ -38,7 +38,7 @@ public class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.NewM
     public void onBindViewHolder(@NonNull NewMemberViewHolder newMemberViewHolder, int i) {
         NewMemberModel newMemberModel = newMemberModels.get(i);
 
-        Picasso.get().load(newMemberModel.getImageURL()).into(newMemberViewHolder.newMemberImageView);
+        Picasso.get().load(newMemberModel.getImageURL()).fit().centerCrop().into(newMemberViewHolder.newMemberImageView);
         newMemberViewHolder.newMemberNameTextView.setText(newMemberModel.getName());
         newMemberViewHolder.newMemberRoleTextView.setText(newMemberModel.getRole());
 

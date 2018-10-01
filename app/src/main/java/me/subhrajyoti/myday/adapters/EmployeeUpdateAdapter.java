@@ -40,7 +40,8 @@ public class EmployeeUpdateAdapter extends RecyclerView.Adapter<EmployeeUpdateAd
 
         EmployeeUpdateModel employeeUpdateModel = employeeUpdateModels.get(i);
 
-        Picasso.get().load(employeeUpdateModel.getImageURL()).into(employeeUpdateViewHolder.employeeImageView);
+        Picasso.get().load(employeeUpdateModel.getImageURL()).fit().centerCrop().into(employeeUpdateViewHolder.employeeImageView);
+
         employeeUpdateViewHolder.employeeNameTextView.setText(employeeUpdateModel.getName());
         employeeUpdateViewHolder.employeeRoleTextView.setText(employeeUpdateModel.getRole());
         employeeUpdateViewHolder.employeeUpdateTimeTextView.setText(employeeUpdateModel.getTime());
