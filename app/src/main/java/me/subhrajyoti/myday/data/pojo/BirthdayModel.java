@@ -10,13 +10,6 @@ public class BirthdayModel {
     @SerializedName("image_url")
     private String imageURL;
 
-    public BirthdayModel(String name, String role, String birthday, String imageURL) {
-        this.name = name;
-        this.role = role;
-        this.birthday = birthday;
-        this.imageURL = imageURL;
-    }
-
     public String getName() {
         return name;
     }

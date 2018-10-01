@@ -9,11 +9,6 @@ public class QuickViewModel {
     @SerializedName("subtext")
     private String subText;
 
-    public QuickViewModel(String cardHeader, String subText) {
-        this.cardHeader = cardHeader;
-        this.subText = subText;
-    }
-
     public String getCardHeader() {
         return cardHeader;
     }

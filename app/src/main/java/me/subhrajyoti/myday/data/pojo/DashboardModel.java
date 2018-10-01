@@ -11,15 +11,6 @@ public class DashboardModel {
     private String description;
     private String when;
 
-
-    public DashboardModel(String amount, String status, float change, String description, String when) {
-        this.amount = amount;
-        this.status = status;
-        this.change = change;
-        this.description = description;
-        this.when = when;
-    }
-
     public String getAmount() {
         return amount;
     }

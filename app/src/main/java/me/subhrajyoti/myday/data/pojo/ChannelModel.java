@@ -9,11 +9,6 @@ public class ChannelModel {
     @SerializedName("members")
     private int numberOfMembers;
 
-    public ChannelModel(String channelName, int numberOfMembers) {
-        ChannelName = channelName;
-        this.numberOfMembers = numberOfMembers;
-    }
-
     public String getChannelName() {
         return ChannelName;
     }

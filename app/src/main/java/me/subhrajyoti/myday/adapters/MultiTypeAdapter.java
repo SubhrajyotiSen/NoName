@@ -100,9 +100,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
         if (position != 0)
             if (position % 2 == 0)
-                viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.lightGray, null));
+                viewHolder.recyclerViewRowCard.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.lightGray, null));
             else
-                viewHolder.recyclerview_row_card.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorWhite, null));
+                viewHolder.recyclerViewRowCard.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorWhite, null));
         viewHolder.update(myDataList.get(position));
     }
 
@@ -185,17 +185,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
         ProjectsAdapter projectsAdapter;
         @BindView(R.id.generic_recyclerview)
-        RecyclerView projectRecyclerview;
+        RecyclerView projectRecyclerView;
         @BindView(R.id.header_textView)
         TextView headerTextView;
 
 
-        public ProjectsViewHolder(@NonNull View itemView) {
+        ProjectsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             projectsAdapter = new ProjectsAdapter();
-            projectRecyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            projectRecyclerview.setAdapter(projectsAdapter);
+            projectRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            projectRecyclerView.setAdapter(projectsAdapter);
 
         }
 
@@ -209,9 +209,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.recyclerview_row_card)
-        CardView recyclerview_row_card;
+        CardView recyclerViewRowCard;
 
-        public BaseViewHolder(@NonNull View itemView) {
+        BaseViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -222,17 +222,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     class BirthdayViewHolder extends BaseViewHolder {
 
         @BindView(R.id.generic_recyclerview)
-        RecyclerView birthdayRecyclerview;
+        RecyclerView birthdayRecyclerView;
         @BindView(R.id.header_textView)
         TextView headerTextView;
         BirthdayAdapter birthdayAdapter;
 
-        public BirthdayViewHolder(@NonNull View itemView) {
+        BirthdayViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             birthdayAdapter = new BirthdayAdapter();
-            birthdayRecyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            birthdayRecyclerview.setAdapter(birthdayAdapter);
+            birthdayRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            birthdayRecyclerView.setAdapter(birthdayAdapter);
         }
 
         @Override
@@ -251,17 +251,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @BindView(R.id.add_button)
         ImageView addButton;
         @BindView(R.id.quickview_card_recyclerview)
-        RecyclerView quickviewCardRecyclerview;
+        RecyclerView quickViewCardRecyclerView;
         QuickViewCardAdapter quickViewCardAdapter;
 
-        public QuickViewHolder(@NonNull View itemView) {
+        QuickViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             dateTextView.setText("24 September");
             dayTextView.setText("Today");
             quickViewCardAdapter = new QuickViewCardAdapter();
-            quickviewCardRecyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            quickviewCardRecyclerview.setAdapter(quickViewCardAdapter);
+            quickViewCardRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            quickViewCardRecyclerView.setAdapter(quickViewCardAdapter);
 
         }
 
@@ -279,7 +279,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         ChannelAdapter channelAdapter;
 
-        public ChannelsAdapter(@NonNull View itemView) {
+        ChannelsAdapter(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             channelAdapter = new ChannelAdapter();
@@ -302,7 +302,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         DashboardAdapter dashboardAdapter;
 
-        public DashboardsAdapter(@NonNull View itemView) {
+        DashboardsAdapter(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             dashboardAdapter = new DashboardAdapter();
@@ -325,7 +325,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         TeamUpdateAdapter teamUpdatesAdapter;
 
-        public TeamUpdatesViewHolder(@NonNull View itemView) {
+        TeamUpdatesViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             teamUpdatesAdapter = new TeamUpdateAdapter();
@@ -343,17 +343,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     class PollsViewHolder extends BaseViewHolder {
 
         @BindView(R.id.generic_recyclerview)
-        RecyclerView pollssRecyclerView;
+        RecyclerView pollsRecyclerView;
         @BindView(R.id.header_textView)
         TextView headerTextView;
         PollAdapter pollAdapter;
 
-        public PollsViewHolder(@NonNull View itemView) {
+        PollsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             pollAdapter = new PollAdapter();
-            pollssRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            pollssRecyclerView.setAdapter(pollAdapter);
+            pollsRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            pollsRecyclerView.setAdapter(pollAdapter);
 
         }
 
@@ -372,7 +372,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         EventAdapter eventAdapter;
 
-        public EventsViewHolder(@NonNull View itemView) {
+        EventsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             eventAdapter = new EventAdapter();
@@ -396,7 +396,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         ChannelUpdateAdapter channelUpdateAdapter;
 
-        public ChannelUpdatesViewHolder(@NonNull View itemView) {
+        ChannelUpdatesViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             channelUpdateAdapter = new ChannelUpdateAdapter();
@@ -419,7 +419,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         TextView headerTextView;
         NewMemberAdapter newMemberAdapter;
 
-        public NewMembersViewHolder(@NonNull View itemView) {
+        NewMembersViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             newMemberAdapter = new NewMemberAdapter();
@@ -437,17 +437,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     class EmployeeUpdatesViewHolder extends BaseViewHolder {
 
         @BindView(R.id.generic_recyclerview)
-        RecyclerView employeeUpdateRecylerView;
+        RecyclerView employeeUpdateRecyclerView;
         @BindView(R.id.header_textView)
         TextView headerTextView;
         EmployeeUpdateAdapter employeeUpdateAdapter;
 
-        public EmployeeUpdatesViewHolder(@NonNull View itemView) {
+        EmployeeUpdatesViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             employeeUpdateAdapter = new EmployeeUpdateAdapter();
-            employeeUpdateRecylerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            employeeUpdateRecylerView.setAdapter(employeeUpdateAdapter);
+            employeeUpdateRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            employeeUpdateRecyclerView.setAdapter(employeeUpdateAdapter);
         }
 
         @Override

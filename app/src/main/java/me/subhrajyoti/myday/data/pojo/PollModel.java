@@ -4,12 +4,7 @@ public class PollModel {
 
     private String deadline;
     private String question;
-
-    public PollModel(String deadline, String question) {
-        this.deadline = deadline;
-        this.question = question;
-    }
-
+    
     public String getDeadline() {
         return deadline;
     }

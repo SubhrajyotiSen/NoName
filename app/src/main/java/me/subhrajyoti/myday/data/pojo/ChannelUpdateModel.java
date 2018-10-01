@@ -10,13 +10,6 @@ public class ChannelUpdateModel {
     private int likes;
     private int comments;
 
-    public ChannelUpdateModel(String channelName, String update, int likes, int comments) {
-        this.channelName = channelName;
-        this.update = update;
-        this.likes = likes;
-        this.comments = comments;
-    }
-
     public String getChannelName() {
         return channelName;
     }

@@ -6,12 +6,6 @@ public class TeamUpdateModel {
     private String topic;
     private String when;
 
-    public TeamUpdateModel(String update, String topic, String when) {
-        this.update = update;
-        this.topic = topic;
-        this.when = when;
-    }
-
     public String getUpdate() {
         return update;
     }

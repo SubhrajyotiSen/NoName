@@ -12,13 +12,6 @@ public class ProjectModel {
     private int tasksTotal;
     private String deadline;
 
-    public ProjectModel(String projectName, int tasksCompleted, int tasksTotal, String deadline) {
-        this.projectName = projectName;
-        this.tasksCompleted = tasksCompleted;
-        this.tasksTotal = tasksTotal;
-        this.deadline = deadline;
-    }
-
     public String getProjectName() {
         return projectName;
     }

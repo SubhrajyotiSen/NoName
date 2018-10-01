@@ -6,12 +6,6 @@ public class EventModel {
     private String name;
     private String venue;
 
-    public EventModel(String date, String name, String venue) {
-        this.date = date;
-        this.name = name;
-        this.venue = venue;
-    }
-
     public String getDate() {
         return date;
     }

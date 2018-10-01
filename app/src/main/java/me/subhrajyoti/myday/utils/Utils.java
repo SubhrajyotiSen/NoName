@@ -6,7 +6,6 @@ import android.net.NetworkInfo;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,10 +16,8 @@ import me.subhrajyoti.myday.MyDate;
 import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.data.remote.ApiService;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -45,6 +42,7 @@ public class Utils {
             e.printStackTrace();
         }
         Date today = new Date();
+        assert deadline != null;
         long diff = deadline.getTime() - today.getTime();
         return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
@@ -69,7 +67,7 @@ public class Utils {
                 .baseUrl("http://www.mocky.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //.client(okHttpClient)
+                .client(okHttpClient)
                 .build()
                 .create(ApiService.class);
     }

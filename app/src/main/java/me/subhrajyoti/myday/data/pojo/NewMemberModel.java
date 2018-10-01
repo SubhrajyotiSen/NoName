@@ -9,12 +9,6 @@ public class NewMemberModel {
     private String name;
     private String role;
 
-    public NewMemberModel(String imageURL, String name, String role) {
-        this.imageURL = imageURL;
-        this.name = name;
-        this.role = role;
-    }
-
     public String getImageURL() {
         return imageURL;
     }
