@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,8 +18,8 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder
 
     private List<PollModel> pollModels;
 
-    public PollAdapter() {
-        this.pollModels = new ArrayList<>();
+    public PollAdapter(List<PollModel> pollModels) {
+        this.pollModels = pollModels;
     }
 
     @NonNull

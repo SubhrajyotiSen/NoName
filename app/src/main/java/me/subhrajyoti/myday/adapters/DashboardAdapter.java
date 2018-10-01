@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -22,8 +21,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
     private List<DashboardModel> dashboardModels;
 
-    public DashboardAdapter() {
-        this.dashboardModels = new ArrayList<>();
+    public DashboardAdapter(List<DashboardModel> dashboardModels) {
+        this.dashboardModels = dashboardModels;
     }
 
 

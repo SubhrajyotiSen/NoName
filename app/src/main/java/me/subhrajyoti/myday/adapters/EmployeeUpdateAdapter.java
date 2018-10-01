@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,8 +22,8 @@ public class EmployeeUpdateAdapter extends RecyclerView.Adapter<EmployeeUpdateAd
 
     private List<EmployeeUpdateModel> employeeUpdateModels;
 
-    public EmployeeUpdateAdapter() {
-        employeeUpdateModels = new ArrayList<>();
+    public EmployeeUpdateAdapter(List<EmployeeUpdateModel> employeeUpdateModels) {
+        this.employeeUpdateModels = employeeUpdateModels;
     }
 
     @NonNull

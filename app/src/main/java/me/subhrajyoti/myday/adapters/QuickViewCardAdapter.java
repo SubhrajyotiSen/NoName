@@ -21,8 +21,8 @@ public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdap
 
     private List<QuickViewModel> quickViewModels;
 
-    public QuickViewCardAdapter() {
-        this.quickViewModels = new ArrayList<>();
+    public QuickViewCardAdapter(List<QuickViewModel> quickViewModels) {
+        this.quickViewModels = quickViewModels;
 
     }
     @NonNull

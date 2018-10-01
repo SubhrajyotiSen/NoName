@@ -8,21 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.subhrajyoti.myday.utils.ColorGenerator;
 import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.data.pojo.EventModel;
+import me.subhrajyoti.myday.utils.ColorGenerator;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
     private List<EventModel> eventModels;
 
-    public EventAdapter() {
-        this.eventModels = new ArrayList<>();
+    public EventAdapter(List<EventModel> eventModels) {
+        this.eventModels = eventModels;
     }
 
     @NonNull

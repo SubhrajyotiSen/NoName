@@ -13,22 +13,21 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.MyDayApp;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.ProjectModel;
+import me.subhrajyoti.myday.utils.Utils;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
 
     private final List<ProjectModel> projectModelList;
 
-    public ProjectsAdapter() {
-        this.projectModelList = new ArrayList<>();
+    public ProjectsAdapter(List<ProjectModel> projectModels) {
+        this.projectModelList = projectModels;
     }
 
 

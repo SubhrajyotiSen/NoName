@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -22,8 +21,8 @@ public class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.NewM
 
     private List<NewMemberModel> newMemberModels;
 
-    public NewMemberAdapter() {
-        this.newMemberModels = new ArrayList<>();
+    public NewMemberAdapter(List<NewMemberModel> newMemberModels) {
+        this.newMemberModels = newMemberModels;
     }
 
     @NonNull

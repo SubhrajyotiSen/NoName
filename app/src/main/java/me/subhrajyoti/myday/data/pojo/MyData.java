@@ -12,11 +12,7 @@ public class MyData {
     private String type;
     private String scroll;
     private JsonArray data;
-    private List<Object> dataList;
 
-    public MyData() {
-        dataList = new ArrayList<>();
-    }
 
     public String getType() {
         return type;
@@ -30,16 +26,14 @@ public class MyData {
         return scroll;
     }
 
-    public List<Object> getDataList() {
-        return dataList;
-    }
-
-    public  <T> void makeArrayListFromJsonArray(Class<T> tClass) {
+    public  <T> ArrayList<T> makeArrayListFromJsonArray(Class<T> tClass) {
+        ArrayList<T> arrayList = new ArrayList<>();
         Gson gson = new Gson();
         for (int i = 0; i < data.size(); i++) {
             JsonElement jsonElement = data.get(i);
-            dataList.add(gson.fromJson(jsonElement, tClass));
+            arrayList.add(gson.fromJson(jsonElement, tClass));
         }
+        return arrayList;
     }
 
 }

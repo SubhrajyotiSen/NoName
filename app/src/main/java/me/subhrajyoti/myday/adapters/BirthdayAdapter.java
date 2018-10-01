@@ -10,21 +10,20 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
+import me.subhrajyoti.myday.utils.Utils;
 
 public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.BirthdayViewHolder> {
 
     private final List<BirthdayModel> birthdayModelList;
 
-    public BirthdayAdapter() {
-        this.birthdayModelList = new ArrayList<>();
+    public BirthdayAdapter(List<BirthdayModel> birthdayModels) {
+        this.birthdayModelList = birthdayModels;
 
     }
 

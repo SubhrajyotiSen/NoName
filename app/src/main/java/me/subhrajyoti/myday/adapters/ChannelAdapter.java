@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,8 +19,8 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ChannelV
 
     private List<ChannelModel> channelModels;
 
-    public ChannelAdapter() {
-        this.channelModels = new ArrayList<>();
+    public ChannelAdapter(List<ChannelModel> channelModels) {
+        this.channelModels = channelModels;
     }
 
     @NonNull
