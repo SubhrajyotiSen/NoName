@@ -16,7 +16,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 
 public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.BirthdayViewHolder> {
@@ -46,9 +45,8 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
 
         birthdayViewHolder.name.setText(birthdayModel.getName());
         birthdayViewHolder.role.setText(birthdayModel.getRole());
-        birthdayViewHolder.birthdayWhen.setText(Utils.birthdayTimeToDisplay(birthdayModel.getBirthday()));
 
-        Picasso.get().load(birthdayModelList.get(position).getImageURL()).fit().centerCrop().into(birthdayViewHolder.birthdayPersonImage);
+        Picasso.get().load(birthdayModel.getImageURL()).fit().centerCrop().into(birthdayViewHolder.birthdayPersonImage);
         // TODO: use something like Shimmer as a placeholder while loading image
 
     }
@@ -66,10 +64,6 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
         TextView name;
         @BindView(R.id.birthday_person_role)
         TextView role;
-        @BindView(R.id.birthday_when)
-        TextView birthdayWhen;
-        @BindView(R.id.wish_birthday_button)
-        TextView birthdayWishButton;
 
         public BirthdayViewHolder(@NonNull View itemView) {
             super(itemView);

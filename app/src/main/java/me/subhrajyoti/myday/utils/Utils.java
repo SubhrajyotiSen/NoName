@@ -23,16 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Utils {
 
-    public static String birthdayTimeToDisplay(String day) {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        MyDate today = MyDate.Companion.makeMyDate(dateFormat.format(new Date()));
-        MyDate birthday = MyDate.Companion.makeMyDate(day);
-        if (MyDate.Companion.compare(today, birthday))
-            return "Upcoming";
-        else
-            return "Today";
-    }
-
     public static int daysLeftTillDeadline(String day) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date deadline = null;

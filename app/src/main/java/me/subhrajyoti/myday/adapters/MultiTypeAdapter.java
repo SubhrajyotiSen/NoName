@@ -3,41 +3,47 @@ package me.subhrajyoti.myday.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.subhrajyoti.myday.R;
-import me.subhrajyoti.myday.data.pojo.EmployeeUpdateModel;
-import me.subhrajyoti.myday.data.pojo.NewMemberModel;
-import me.subhrajyoti.myday.utils.Utils;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 import me.subhrajyoti.myday.data.pojo.ChannelModel;
 import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;
 import me.subhrajyoti.myday.data.pojo.DashboardModel;
+import me.subhrajyoti.myday.data.pojo.EmployeeUpdateModel;
 import me.subhrajyoti.myday.data.pojo.EventModel;
 import me.subhrajyoti.myday.data.pojo.MyData;
+import me.subhrajyoti.myday.data.pojo.NewMemberModel;
 import me.subhrajyoti.myday.data.pojo.PollModel;
 import me.subhrajyoti.myday.data.pojo.ProjectModel;
 import me.subhrajyoti.myday.data.pojo.QuickViewModel;
+import me.subhrajyoti.myday.data.pojo.TaskModel;
 import me.subhrajyoti.myday.data.pojo.TeamUpdateModel;
+import me.subhrajyoti.myday.utils.Utils;
 
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
-    private List<MyData> myDataList = new ArrayList<>();
+    private List<MyData> dataArrayList = new ArrayList<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
-            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10;
+            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -54,6 +60,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         if (i == QUICKVIEW)
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.quickview_layout, viewGroup, false);
+        else if (i == BIRTHDAY)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.birthday_layout, viewGroup, false);
+        else if (i == TASKS)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.task_layout, viewGroup, false);
         else
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.generic_recyclerview_row, viewGroup, false);
@@ -89,6 +101,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case EMPLOYEE_UPDATE:
                 customViewHolder = new EmployeeUpdatesViewHolder(v);
                 break;
+            case TASKS:
+                customViewHolder = new TasksViewHolder(v);
+                break;
             default:
                 customViewHolder = new QuickViewHolder(v);
         }
@@ -98,56 +113,68 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
-        if (position != 0)
-            if (position % 2 == 0)
-                viewHolder.recyclerViewRowCard.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.lightGray, null));
-            else
-                viewHolder.recyclerViewRowCard.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorWhite, null));
-        viewHolder.update(myDataList.get(position));
+        viewHolder.update(dataArrayList.get(position));
     }
 
 
     @Override
     public int getItemCount() {
-        return myDataList.size();
+        return dataArrayList.size();
     }
 
     public void addAll(List<MyData> myDataList) {
-        this.myDataList = myDataList;
+        Gson gson = new Gson();
         for (MyData myData : myDataList) {
             switch (myData.getType()) {
                 case "projects":
                     myData.makeArrayListFromJsonArray(ProjectModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), myData.getDataList()));
                     break;
                 case "birthdays":
-                    myData.makeArrayListFromJsonArray(BirthdayModel.class);
+                    for (JsonElement jsonElement : myData.getData()) {
+                        dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, BirthdayModel.class)))));
+                    }
                     break;
                 case "channels":
                     myData.makeArrayListFromJsonArray(ChannelModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "dashboard":
                     myData.makeArrayListFromJsonArray(DashboardModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "team updates":
                     myData.makeArrayListFromJsonArray(TeamUpdateModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "polls":
                     myData.makeArrayListFromJsonArray(PollModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "events":
                     myData.makeArrayListFromJsonArray(EventModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "channel update":
                     myData.makeArrayListFromJsonArray(ChannelUpdateModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "new members":
                     myData.makeArrayListFromJsonArray(NewMemberModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
                     break;
                 case "employee updates":
                     myData.makeArrayListFromJsonArray(EmployeeUpdateModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    break;
+                case "tasks":
+                    for (JsonElement jsonElement : myData.getData()) {
+                        dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, TaskModel.class)))));
+                    }
                     break;
                 default:
                     myData.makeArrayListFromJsonArray(QuickViewModel.class);
+                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
             }
         }
         notifyDataSetChanged();
@@ -155,7 +182,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     @Override
     public int getItemViewType(int position) {
-        switch (myDataList.get(position).getType()) {
+        switch (dataArrayList.get(position).getType()) {
             case "projects":
                 return PROJECT;
             case "birthdays":
@@ -176,6 +203,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return NEW_MEMBER;
             case "employee updates":
                 return EMPLOYEE_UPDATE;
+            case "tasks":
+                return TASKS;
             default:
                 return QUICKVIEW;
         }
@@ -208,12 +237,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.recyclerview_row_card)
-        CardView recyclerViewRowCard;
-
         BaseViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
         }
 
         public abstract void update(MyData myData);
@@ -221,24 +246,28 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     class BirthdayViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.generic_recyclerview)
-        RecyclerView birthdayRecyclerView;
-        @BindView(R.id.header_textView)
-        TextView headerTextView;
-        BirthdayAdapter birthdayAdapter;
+        @BindView(R.id.birthday_person_image)
+        ImageView birthdayPersonImage;
+        @BindView(R.id.birthday_person_name)
+        TextView name;
+        @BindView(R.id.birthday_person_role)
+        TextView role;
+        @BindView(R.id.wish_text_view)
+        EditText wishEditText;
 
         BirthdayViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            birthdayAdapter = new BirthdayAdapter();
-            birthdayRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            birthdayRecyclerView.setAdapter(birthdayAdapter);
         }
 
         @Override
         public void update(MyData myData) {
-            headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            birthdayAdapter.addAll(myData.getDataList());
+            BirthdayModel birthdayModel = (BirthdayModel) myData.getDataList().get(0);
+
+            name.setText(birthdayModel.getName());
+            role.setText(birthdayModel.getRole());
+            wishEditText.setHint("Happy Birthday ".concat(birthdayModel.getName().substring(0, birthdayModel.getName().indexOf(' '))).concat("!"));
+            Picasso.get().load(birthdayModel.getImageURL()).fit().centerCrop().into(birthdayPersonImage);
         }
     }
 
@@ -454,6 +483,46 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(MyData myData) {
             headerTextView.setText(myData.getType());
             employeeUpdateAdapter.addAll(myData.getDataList());
+        }
+    }
+
+    class TasksViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.priority_bar_1)
+        View priorityBar1;
+        @BindView(R.id.priority_bar_2)
+        View priorityBar2;
+        @BindView(R.id.task_title_textView)
+        TextView taskTitleTextView;
+        @BindView(R.id.task_when_textView)
+        TextView taskWhenTextView;
+
+        public TasksViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            TaskModel taskModel = (TaskModel) myData.getDataList().get(0);
+
+            switch (taskModel.getPriority()) {
+                case "high":
+                    priorityBar1.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
+                    priorityBar2.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
+                    break;
+                case "low":
+                    priorityBar1.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
+                    priorityBar2.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorMediumLightGray, null));
+                    break;
+                default:
+                    priorityBar1.setVisibility(View.GONE);
+                    priorityBar2.setVisibility(View.GONE);
+            }
+
+            taskTitleTextView.setText(taskModel.getTitle());
+            taskWhenTextView.setText(taskModel.getWhen());
+
         }
     }
 }

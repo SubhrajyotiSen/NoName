@@ -249,29 +249,45 @@
     "type": "birthdays",
     "scroll": "horizontal",
     "data": [{
-      "name": "John",
-      "role": "manager",
-      "birthday": "19/09/2018",
-      "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-    },
-      { "name": "John",
-        "role": "manager",
-        "birthday": "27/09/2018",
+        "name": "Bertie Hampton",
+        "role": "HR Specialist",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
       },
-      { "name": "John",
-        "role": "manager",
-        "birthday": "27/09/2018",
+      { "name": "Lucas Crompton",
+        "role": "Legal Counselor",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
       },
-      { "name": "John",
-        "role": "manager",
-        "birthday": "27/09/2018",
+      { "name": "Joseph Todd",
+        "role": "IT Trainee",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
       },
-      { "name": "John",
+      { "name": "Joseph Todd",
         "role": "manager",
-        "birthday": "27/09/2018",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "Joseph Todd",
+        "role": "manager",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      {
+        "name": "Bertie Hampton",
+        "role": "HR Specialist",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "Lucas Crompton",
+        "role": "Legal Counselor",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "Joseph Todd",
+        "role": "IT Trainee",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "Joseph Todd",
+        "role": "manager",
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+      },
+      { "name": "Joseph Todd",
+        "role": "manager",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
       }
     ]

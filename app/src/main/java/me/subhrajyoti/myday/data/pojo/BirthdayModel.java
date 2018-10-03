@@ -6,7 +6,6 @@ public class BirthdayModel {
 
     private String name;
     private String role;
-    private String birthday;
     @SerializedName("image_url")
     private String imageURL;
 
@@ -16,10 +15,6 @@ public class BirthdayModel {
 
     public String getRole() {
         return role;
-    }
-
-    public String getBirthday() {
-        return birthday;
     }
 
     public String getImageURL() {

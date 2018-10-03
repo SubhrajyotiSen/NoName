@@ -18,6 +18,12 @@ public class MyData {
         dataList = new ArrayList<>();
     }
 
+    public MyData(String type, String scroll, List<Object> dataList) {
+        this.type = type;
+        this.scroll = scroll;
+        this.dataList = dataList;
+    }
+
     public String getType() {
         return type;
     }
@@ -34,7 +40,7 @@ public class MyData {
         return dataList;
     }
 
-    public  <T> void makeArrayListFromJsonArray(Class<T> tClass) {
+    public <T> void makeArrayListFromJsonArray(Class<T> tClass) {
         Gson gson = new Gson();
         for (int i = 0; i < data.size(); i++) {
             JsonElement jsonElement = data.get(i);
