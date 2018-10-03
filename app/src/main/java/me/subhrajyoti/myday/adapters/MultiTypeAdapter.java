@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import me.subhrajyoti.myday.R;
 import me.subhrajyoti.myday.data.pojo.BirthdayModel;
 import me.subhrajyoti.myday.data.pojo.ChannelModel;
 import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;
+import me.subhrajyoti.myday.data.pojo.ClaimModel;
 import me.subhrajyoti.myday.data.pojo.DashboardModel;
 import me.subhrajyoti.myday.data.pojo.EmployeeUpdateModel;
 import me.subhrajyoti.myday.data.pojo.EventModel;
@@ -43,7 +45,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     private List<MyData> dataArrayList = new ArrayList<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
-            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11;
+            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -66,6 +68,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         else if (i == TASKS)
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.task_layout, viewGroup, false);
+        else if (i == CLAIMS)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.claims_layout, viewGroup, false);
         else
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.generic_recyclerview_row, viewGroup, false);
@@ -104,6 +109,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case TASKS:
                 customViewHolder = new TasksViewHolder(v);
                 break;
+            case CLAIMS:
+                customViewHolder = new ClaimsViewHolder(v);
+                break;
             default:
                 customViewHolder = new QuickViewHolder(v);
         }
@@ -128,53 +136,58 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             switch (myData.getType()) {
                 case "projects":
                     myData.makeArrayListFromJsonArray(ProjectModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "birthdays":
                     for (JsonElement jsonElement : myData.getData()) {
-                        dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, BirthdayModel.class)))));
+                        dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, BirthdayModel.class)))));
                     }
                     break;
                 case "channels":
                     myData.makeArrayListFromJsonArray(ChannelModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "dashboard":
                     myData.makeArrayListFromJsonArray(DashboardModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "team updates":
                     myData.makeArrayListFromJsonArray(TeamUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "polls":
                     myData.makeArrayListFromJsonArray(PollModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "events":
                     myData.makeArrayListFromJsonArray(EventModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "channel update":
                     myData.makeArrayListFromJsonArray(ChannelUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "new members":
                     myData.makeArrayListFromJsonArray(NewMemberModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "employee updates":
                     myData.makeArrayListFromJsonArray(EmployeeUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "tasks":
                     for (JsonElement jsonElement : myData.getData()) {
-                        dataArrayList.add(new MyData(myData.getType(), myData.getScroll(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, TaskModel.class)))));
+                        dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, TaskModel.class)))));
+                    }
+                    break;
+                case "claims":
+                    for (JsonElement jsonElement : myData.getData()) {
+                        dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, ClaimModel.class)))));
                     }
                     break;
                 default:
                     myData.makeArrayListFromJsonArray(QuickViewModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getScroll(),myData.getDataList()));
+                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
             }
         }
         notifyDataSetChanged();
@@ -205,6 +218,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return EMPLOYEE_UPDATE;
             case "tasks":
                 return TASKS;
+            case "claims":
+                return CLAIMS;
             default:
                 return QUICKVIEW;
         }
@@ -268,6 +283,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             role.setText(birthdayModel.getRole());
             wishEditText.setHint("Happy Birthday ".concat(birthdayModel.getName().substring(0, birthdayModel.getName().indexOf(' '))).concat("!"));
             Picasso.get().load(birthdayModel.getImageURL()).fit().centerCrop().into(birthdayPersonImage);
+
+            Log.d("TAG", "birthtday");
         }
     }
 
@@ -497,7 +514,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @BindView(R.id.task_when_textView)
         TextView taskWhenTextView;
 
-        public TasksViewHolder(@NonNull View itemView) {
+        TasksViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -524,5 +541,34 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             taskWhenTextView.setText(taskModel.getWhen());
 
         }
+    }
+
+    class ClaimsViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.claims_person_imageView)
+        ImageView claimsPersonImageView;
+        @BindView(R.id.claims_name_textView)
+        TextView claimsNameTextView;
+        @BindView(R.id.claims_amount_textView)
+        TextView claimsAmountTextView;
+        @BindView(R.id.claims_bills_textView)
+        TextView claimsBillsTextView;
+
+        ClaimsViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void update(MyData myData) {
+            ClaimModel claimModel = (ClaimModel) myData.getDataList().get(0);
+
+            Picasso.get().load(claimModel.getImageURL()).fit().centerCrop().into(claimsPersonImageView);
+            claimsNameTextView.setText(claimModel.getName());
+            claimsAmountTextView.setText(claimModel.getAmount());
+            claimsBillsTextView.setText(String.valueOf(claimModel.getBills()).concat(" bills"));
+
+        }
+
     }
 }

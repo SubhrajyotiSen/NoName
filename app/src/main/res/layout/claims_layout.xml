@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="10dp"
+    card_view:cardCornerRadius="6dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -10,13 +15,13 @@
         android:layout_marginTop="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/birthday_person_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/claims_person_imageView"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,40 +32,29 @@
             <me.subhrajyoti.myday.views.HubblerBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/birthday_person_name"
+                android:id="@+id/claims_name_textView"
+                android:textSize="18sp"
                 />
 
-            <me.subhrajyoti.myday.views.HubblerTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/birthday_person_role"
-                android:layout_marginBottom="5dp"/>
-            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="5dp">
 
-                <EditText
-                    android:id="@+id/wish_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/lightGray"
-                    android:textSize="15sp"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:textColor="@color/colorMediumLightGray"/>
-
-                <ImageView
+                <TextView
+                    android:id="@+id/claims_amount_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_send"
-                    android:id="@+id/wish_send_button"/>
+                    android:textSize="15sp"
+                    android:paddingEnd="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:id="@+id/claims_bills_textView"/>
 
 
             </LinearLayout>

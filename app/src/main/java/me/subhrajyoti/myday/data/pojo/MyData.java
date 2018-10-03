@@ -10,7 +10,6 @@ import java.util.List;
 public class MyData {
 
     private String type;
-    private String scroll;
     private JsonArray data;
     private List<Object> dataList;
 
@@ -18,9 +17,8 @@ public class MyData {
         dataList = new ArrayList<>();
     }
 
-    public MyData(String type, String scroll, List<Object> dataList) {
+    public MyData(String type, List<Object> dataList) {
         this.type = type;
-        this.scroll = scroll;
         this.dataList = dataList;
     }
 
@@ -30,10 +28,6 @@ public class MyData {
 
     public JsonArray getData() {
         return data;
-    }
-
-    public String getScroll() {
-        return scroll;
     }
 
     public List<Object> getDataList() {

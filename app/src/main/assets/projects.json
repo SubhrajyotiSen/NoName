@@ -1,7 +1,6 @@
 [
   {
     "type": "quickview",
-    "scroll": "horizontal",
     "data": [{
       "header": "Chat",
       "subtext": "2 unread"
@@ -27,7 +26,6 @@
 
   {
     "type": "dashboard",
-    "scroll": "horizontal",
     "data": [{
       "amount": "15.2cr",
       "status" : "up",
@@ -60,7 +58,6 @@
   },
   {
     "type": "projects",
-    "scroll": "horizontal",
     "data": [{
       "name": "Phoenix",
       "tasks_completed": 24,
@@ -119,8 +116,54 @@
     ]
   },
   {
+    "type": "claims",
+    "data": [
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Herbert Ford",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Mohan Mitra",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Herbert Ford",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Ananya Rai",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Mohan Mitra",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Herbert Ford",
+        "value": "INR 21,234.00",
+        "bills": 21
+      },
+      {
+        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
+        "name": "Mohan Mitra",
+        "value": "INR 21,234.00",
+        "bills": 21
+      }
+    ]
+  },
+  {
     "type": "employee updates",
-    "scroll": "horizontal",
     "data": [
       {
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
@@ -162,7 +205,6 @@
   },
   {
     "type": "events",
-    "scroll": "horizontal",
     "data": [{
       "date" : "Thu 27-30 Jul",
       "name" : "Review Meet",
@@ -193,7 +235,6 @@
 
   {
     "type": "team updates",
-    "scroll": "horizontal",
     "data": [{
       "update": "on leave",
       "topic": "Siva, Praveen",
@@ -218,7 +259,6 @@
   },
   {
     "type": "channel update",
-    "scroll": "horizontal",
     "data": [{
       "channel_name": "design channel",
       "update": "Start making decisions with the help of AI",
@@ -247,7 +287,6 @@
   },
   {
     "type": "birthdays",
-    "scroll": "horizontal",
     "data": [{
         "name": "Bertie Hampton",
         "role": "HR Specialist",
@@ -264,37 +303,11 @@
       { "name": "Joseph Todd",
         "role": "manager",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      { "name": "Joseph Todd",
-        "role": "manager",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      {
-        "name": "Bertie Hampton",
-        "role": "HR Specialist",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      { "name": "Lucas Crompton",
-        "role": "Legal Counselor",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      { "name": "Joseph Todd",
-        "role": "IT Trainee",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      { "name": "Joseph Todd",
-        "role": "manager",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
-      { "name": "Joseph Todd",
-        "role": "manager",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
       }
     ]
   },
   {
     "type": "polls",
-    "scroll" : "horizontal",
     "data": [{
       "deadline": "Ends in 20 minutes",
       "question": "When should the next in-house workshop be on?"
@@ -315,7 +328,6 @@
   },
   {
     "type": "new members",
-    "scroll": "horizontal",
     "data": [
       {
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png",
@@ -341,7 +353,6 @@
   },
   {
     "type": "channels",
-    "scroll": "horizontal",
     "data" : [
       {
         "name": "Food Fridays",
