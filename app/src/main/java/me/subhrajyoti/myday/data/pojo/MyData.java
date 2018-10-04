@@ -12,6 +12,7 @@ public class MyData {
     private String type;
     private JsonArray data;
     private List<Object> dataList;
+    private String header;
 
     public MyData() {
         dataList = new ArrayList<>();
@@ -20,6 +21,11 @@ public class MyData {
     public MyData(String type, List<Object> dataList) {
         this.type = type;
         this.dataList = dataList;
+    }
+
+    public MyData(String type, String header) {
+        this.header = header;
+        this.type = type;
     }
 
     public String getType() {
@@ -32,6 +38,10 @@ public class MyData {
 
     public List<Object> getDataList() {
         return dataList;
+    }
+
+    public String getHeader() {
+        return header;
     }
 
     public <T> void makeArrayListFromJsonArray(Class<T> tClass) {

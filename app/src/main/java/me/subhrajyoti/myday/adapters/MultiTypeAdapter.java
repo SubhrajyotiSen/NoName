@@ -19,7 +19,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,9 +45,11 @@ import me.subhrajyoti.myday.utils.Utils;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> dataArrayList = new ArrayList<>();
+    private Map<String, MyData> map = new HashMap<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
-            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12;
+            POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12,
+            HEADER = 13, MORE = 14;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -71,6 +75,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         else if (i == CLAIMS)
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.claims_layout, viewGroup, false);
+        else if (i == HEADER)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.header_layout, viewGroup, false);
+        else if (i == MORE)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.display_more_layout, viewGroup, false);
         else
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.generic_recyclerview_row, viewGroup, false);
@@ -112,6 +122,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             case CLAIMS:
                 customViewHolder = new ClaimsViewHolder(v);
                 break;
+            case HEADER:
+                customViewHolder = new HeaderViewHolder(v);
+                break;
+            case MORE:
+                customViewHolder = new DisplayMoreViewHolder(v);
+                break;
             default:
                 customViewHolder = new QuickViewHolder(v);
         }
@@ -121,7 +137,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
-        viewHolder.update(dataArrayList.get(position));
+        viewHolder.update(position);
     }
 
 
@@ -132,6 +148,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     public void addAll(List<MyData> myDataList) {
         Gson gson = new Gson();
+        int length, min;
         for (MyData myData : myDataList) {
             switch (myData.getType()) {
                 case "projects":
@@ -139,8 +156,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "birthdays":
-                    for (JsonElement jsonElement : myData.getData()) {
+                    dataArrayList.add(new MyData("header", myData.getType()));
+                    length  = myData.getData().size();
+                    min = (length > 5)? 5: length;
+
+                    for (int i = 0; i < min; i++) {
+                        JsonElement jsonElement = myData.getData().get(i);
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, BirthdayModel.class)))));
+                    }
+                    if (myData.getData().size() > 5) {
+                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
+                        map.put(myData.getType(), new MyData(myData.getType(), myData.getDataList().subList(min, length)));
                     }
                     break;
                 case "channels":
@@ -176,13 +202,37 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
                     break;
                 case "tasks":
-                    for (JsonElement jsonElement : myData.getData()) {
+                    dataArrayList.add(new MyData("header", myData.getType()));
+                    length  = myData.getData().size();
+                    min = (length > 5)? 5: length;
+
+                    for (int i = 0; i < min; i++) {
+                        JsonElement jsonElement = myData.getData().get(i);
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, TaskModel.class)))));
+                    }
+                    if (myData.getData().size() > 5) {
+                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
+                        map.put(myData.getType(), new MyData(myData.getType(), myData.getDataList().subList(min, length)));
                     }
                     break;
                 case "claims":
-                    for (JsonElement jsonElement : myData.getData()) {
+                    dataArrayList.add(new MyData("header", myData.getType()));
+                    length  = myData.getData().size();
+                    min = (length > 5)? 5: length;
+
+                    for (int i = 0; i < min; i++) {
+                        JsonElement jsonElement = myData.getData().get(i);
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, ClaimModel.class)))));
+                    }
+                    if (myData.getData().size() > 5) {
+                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
+                        List<Object> list = new ArrayList<>();
+                        for (int i = 5; i < length; i++) {
+                            JsonElement jsonElement = myData.getData().get(i);
+                            list.add(gson.fromJson(jsonElement, ClaimModel.class));
+                        }
+                        Log.d("HELLO", list.size()+"");
+                        map.put(myData.getType(), new MyData(myData.getType(),list));
                     }
                     break;
                 default:
@@ -220,6 +270,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return TASKS;
             case "claims":
                 return CLAIMS;
+            case "header":
+                return HEADER;
+            case "more":
+                return MORE;
             default:
                 return QUICKVIEW;
         }
@@ -244,7 +298,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             projectsAdapter.addAll(myData.getDataList());
         }
@@ -256,7 +312,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             super(itemView);
         }
 
-        public abstract void update(MyData myData);
+        public abstract void update(int position);
     }
 
     class BirthdayViewHolder extends BaseViewHolder {
@@ -276,7 +332,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             BirthdayModel birthdayModel = (BirthdayModel) myData.getDataList().get(0);
 
             name.setText(birthdayModel.getName());
@@ -312,7 +370,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             quickViewCardAdapter.addAll(myData.getDataList());
         }
     }
@@ -334,7 +394,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             channelAdapter.addAll(myData.getDataList());
         }
@@ -357,7 +419,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             dashboardAdapter.addAll(myData.getDataList());
         }
@@ -380,7 +444,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
             teamUpdatesAdapter.addAll(myData.getDataList());
         }
@@ -404,7 +470,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(myData.getType());
             pollAdapter.addAll(myData.getDataList());
         }
@@ -427,7 +495,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(myData.getType());
             eventAdapter.addAll(myData.getDataList());
 
@@ -451,7 +521,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(myData.getType());
             channelUpdateAdapter.addAll(myData.getDataList());
         }
@@ -474,7 +546,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(myData.getType());
             newMemberAdapter.addAll(myData.getDataList());
         }
@@ -497,7 +571,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             headerTextView.setText(myData.getType());
             employeeUpdateAdapter.addAll(myData.getDataList());
         }
@@ -520,7 +596,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             TaskModel taskModel = (TaskModel) myData.getDataList().get(0);
 
             switch (taskModel.getPriority()) {
@@ -560,15 +638,83 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         }
 
         @Override
-        public void update(MyData myData) {
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+
             ClaimModel claimModel = (ClaimModel) myData.getDataList().get(0);
 
             Picasso.get().load(claimModel.getImageURL()).fit().centerCrop().into(claimsPersonImageView);
             claimsNameTextView.setText(claimModel.getName());
             claimsAmountTextView.setText(claimModel.getAmount());
             claimsBillsTextView.setText(String.valueOf(claimModel.getBills()).concat(" bills"));
+        }
+    }
 
+    class HeaderViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.header_textView)
+        TextView headerTextView;
+
+        HeaderViewHolder(@NonNull View itemView){
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+        @Override
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+            headerTextView.setText(myData.getHeader());
+        }
+    }
+
+    class DisplayMoreViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.mote_items_textView)
+        TextView moreItemsTextView;
+
+        private boolean toggled = false;
+
+        DisplayMoreViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+
+        }
+
+        @Override
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+            moreItemsTextView.setText(myData.getHeader().concat(" More"));
+            moreItemsTextView.setOnClickListener(v -> {
+                String type = dataArrayList.get(position - 1).getType();
+                MyData myData1 = map.get(type);
+                if (!toggled) {
+                    Log.d("TAG","called");
+                    for (Object object : myData1.getDataList()) {
+                        switch (type) {
+                            case "birthdays":
+                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
+                                break;
+                            case "claims":
+                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
+                                break;
+                            default:
+                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
+                        }
+                        notifyItemInserted(position);
+                    }
+                    toggled = true;
+                    moreItemsTextView.setText("Show less");
+                }
+                else {
+                    for (int i = 0; i < myData1.getDataList().size(); i++) {
+                        dataArrayList.remove(position - 1);
+                        notifyItemRemoved(position );
+                    }
+                    toggled = false;
+                    moreItemsTextView.setText(myData.getHeader().concat(" More"));
+                }
+            });
         }
 
     }
 }
+
