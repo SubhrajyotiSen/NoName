@@ -19,9 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +43,6 @@ import me.subhrajyoti.myday.utils.Utils;
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
 
     private List<MyData> dataArrayList = new ArrayList<>();
-    private Map<String, MyData> map = new HashMap<>();
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
             POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12,
@@ -165,8 +162,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, BirthdayModel.class)))));
                     }
                     if (myData.getData().size() > 5) {
-                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
-                        map.put(myData.getType(), new MyData(myData.getType(), myData.getDataList().subList(min, length)));
+                        List<Object> list = new ArrayList<>();
+                        for (int i = 5; i < length; i++) {
+                            JsonElement jsonElement = myData.getData().get(i);
+                            list.add(gson.fromJson(jsonElement, ClaimModel.class));
+                        }
+                        dataArrayList.add((new MyData("more", String.valueOf(myData.getData().size() - 5),list)));
                     }
                     break;
                 case "channels":
@@ -211,8 +212,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, TaskModel.class)))));
                     }
                     if (myData.getData().size() > 5) {
-                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
-                        map.put(myData.getType(), new MyData(myData.getType(), myData.getDataList().subList(min, length)));
+                        List<Object> list = new ArrayList<>();
+                        for (int i = 5; i < length; i++) {
+                            JsonElement jsonElement = myData.getData().get(i);
+                            list.add(gson.fromJson(jsonElement, ClaimModel.class));
+                        }
+                        dataArrayList.add((new MyData("more", String.valueOf(myData.getData().size() - 5),list)));
                     }
                     break;
                 case "claims":
@@ -225,14 +230,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                         dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singletonList(gson.fromJson(jsonElement, ClaimModel.class)))));
                     }
                     if (myData.getData().size() > 5) {
-                        dataArrayList.add(new MyData("more", String.valueOf(myData.getData().size() - 5)));
                         List<Object> list = new ArrayList<>();
                         for (int i = 5; i < length; i++) {
                             JsonElement jsonElement = myData.getData().get(i);
                             list.add(gson.fromJson(jsonElement, ClaimModel.class));
                         }
-                        Log.d("HELLO", list.size()+"");
-                        map.put(myData.getType(), new MyData(myData.getType(),list));
+                        dataArrayList.add((new MyData("more", String.valueOf(myData.getData().size() - 5),list)));
                     }
                     break;
                 default:
@@ -682,34 +685,33 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(int position) {
             MyData myData = dataArrayList.get(position);
-            moreItemsTextView.setText(myData.getHeader().concat(" More"));
+            Log.d("Position of viewholder", position+"");
+            if (!toggled)
+                moreItemsTextView.setText(myData.getHeader().concat(" More"));
+            else
+                moreItemsTextView.setText("Show less");
             moreItemsTextView.setOnClickListener(v -> {
-                String type = dataArrayList.get(position - 1).getType();
-                MyData myData1 = map.get(type);
                 if (!toggled) {
-                    Log.d("TAG","called");
-                    for (Object object : myData1.getDataList()) {
-                        switch (type) {
-                            case "birthdays":
-                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
-                                break;
-                            case "claims":
-                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
-                                break;
-                            default:
-                                dataArrayList.add(position, new MyData(type, Collections.singletonList(object)));
-                        }
-                        notifyItemInserted(position);
+                    int pos = dataArrayList.indexOf(myData);
+                    Log.d("POSITION", pos+"");
+                    String type = dataArrayList.get(position - 1).getType();
+                    for (Object object : myData.getDataList()) {
+                        Log.d("Inserting into position", pos+"");
+                        dataArrayList.add(pos++, new MyData(type, Collections.singletonList(object)));
                     }
+                    notifyItemRangeInserted(position, myData.getDataList().size());
                     toggled = true;
                     moreItemsTextView.setText("Show less");
                 }
                 else {
-                    for (int i = 0; i < myData1.getDataList().size(); i++) {
-                        dataArrayList.remove(position - 1);
-                        notifyItemRemoved(position );
+                    int pos = dataArrayList.indexOf(myData);
+                    for (int i = 0; i < myData.getDataList().size(); i++) {
+                        Log.d("removing from position", pos-1+"");
+                        dataArrayList.remove(pos-1);
+                        pos--;
                     }
                     toggled = false;
+                    notifyItemRangeRemoved(pos+1, myData.getDataList().size());
                     moreItemsTextView.setText(myData.getHeader().concat(" More"));
                 }
             });

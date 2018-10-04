@@ -28,6 +28,12 @@ public class MyData {
         this.type = type;
     }
 
+    public MyData(String type, String header, List<Object> dataList) {
+        this.header = header;
+        this.type = type;
+        this.dataList = dataList;
+    }
+
     public String getType() {
         return type;
     }

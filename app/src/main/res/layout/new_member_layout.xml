@@ -21,10 +21,10 @@
             android:layout_height="60dp"
             android:background="@drawable/ic_decor_top"/>
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <me.subhrajyoti.myday.views.CircularImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:paddingTop="40dp"
+            android:layout_marginTop="40dp"
             android:id="@+id/new_member_imageView"
             android:layout_centerHorizontal="true" />
 

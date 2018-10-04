@@ -19,7 +19,7 @@
             android:id="@+id/channel_update_profile"
             android:layout_margin="15dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <me.subhrajyoti.myday.views.CircularImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/employee_imageView"/>
