@@ -43,7 +43,6 @@ public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdap
         channelUpdateViewHolder.channelLikeCountTextView.setText(String.valueOf(channelUpdateModel.getLikes()));
         channelUpdateViewHolder.channelCommentCountTextView.setText(String.valueOf(channelUpdateModel.getComments()));
 
-        channelUpdateViewHolder.channeUpdatesCardView.setCardBackgroundColor(ColorGenerator.getColor(17));
     }
 
     @Override
@@ -69,8 +68,6 @@ public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdap
         TextView channelLikeCountTextView;
         @BindView(R.id.channel_comment_count_textView)
         TextView channelCommentCountTextView;
-        @BindView(R.id.channel_updates_cardView)
-        CardView channeUpdatesCardView;
 
         public ChannelUpdateViewHolder(@NonNull View itemView) {
             super(itemView);

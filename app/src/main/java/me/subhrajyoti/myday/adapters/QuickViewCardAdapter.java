@@ -40,8 +40,6 @@ public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdap
     @Override
     public void onBindViewHolder(@NonNull QuickViewHolder viewHolder, int i) {
         viewHolder.card_header.setText(quickViewModels.get(i).getCardHeader());
-        viewHolder.card_count.setText(quickViewModels.get(i).getSubText());
-
         viewHolder.quickcard_cardView.setCardBackgroundColor(ColorGenerator.getColor(i));
 
     }
@@ -63,8 +61,6 @@ public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdap
 
         @BindView(R.id.card_header)
         TextView card_header;
-        @BindView(R.id.card_count)
-        TextView card_count;
         @BindView(R.id.quickview_card)
         CardView quickcard_cardView;
 

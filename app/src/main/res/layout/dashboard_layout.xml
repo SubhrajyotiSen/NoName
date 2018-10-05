@@ -4,10 +4,12 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:minWidth="250dp"
     android:id="@+id/dashboard_card"
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="5dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:layout_marginStart="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,16 +20,18 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp">
 
-        <me.subhrajyoti.myday.views.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.SemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/amount_textview"
             android:textSize="25sp"/>
-        <me.subhrajyoti.myday.views.HubblerTextView
+
+        <me.subhrajyoti.myday.views.SemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/amount_textview"
             android:id="@+id/desc_textview"/>
+
         <me.subhrajyoti.myday.views.HubblerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,24 +39,24 @@
             android:textColor="@color/colorMediumLightGray"
             android:id="@+id/when_textview"
             android:textAllCaps="true"
+            android:textSize="12sp"
             />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/updown_imageview"
-            android:layout_toEndOf="@+id/amount_textview"
-            android:layout_above="@+id/desc_textview"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="4dp"/>
-        <me.subhrajyoti.myday.views.HubblerTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/change_textview"
-            android:layout_toEndOf="@+id/updown_imageview"
-            android:layout_above="@+id/desc_textview"
-            android:paddingBottom="2dp"/>
-
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/updown_imageview"-->
+            <!--android:layout_toEndOf="@+id/amount_textview"-->
+            <!--android:layout_above="@+id/desc_textview"-->
+            <!--android:layout_marginEnd="5dp"-->
+            <!--android:layout_marginBottom="4dp"/>-->
+        <!--<me.subhrajyoti.myday.views.HubblerTextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/change_textview"-->
+            <!--android:layout_toEndOf="@+id/updown_imageview"-->
+            <!--android:layout_above="@+id/desc_textview"-->
+            <!--android:paddingBottom="2dp"/>-->
 
     </RelativeLayout>
 

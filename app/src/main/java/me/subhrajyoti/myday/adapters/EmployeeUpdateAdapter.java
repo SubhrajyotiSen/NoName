@@ -31,7 +31,7 @@ public class EmployeeUpdateAdapter extends RecyclerView.Adapter<EmployeeUpdateAd
     @Override
     public EmployeeUpdateViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.employee_update_layout, viewGroup, false);
+                R.layout.trending_post_layout, viewGroup, false);
         return new EmployeeUpdateViewHolder(v);
     }
 

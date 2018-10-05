@@ -2,7 +2,9 @@ package me.subhrajyoti.myday.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -411,6 +414,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         RecyclerView dashboardRecyclerView;
         @BindView(R.id.header_textView)
         TextView headerTextView;
+        @BindView(R.id.generic_linear_layout)
+        LinearLayout genericLinearLayout;
         DashboardAdapter dashboardAdapter;
 
         DashboardsAdapter(@NonNull View itemView) {
@@ -419,6 +424,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             dashboardAdapter = new DashboardAdapter();
             dashboardRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             dashboardRecyclerView.setAdapter(dashboardAdapter);
+            //genericLinearLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_shadow, null));
         }
 
         @Override
@@ -671,8 +677,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     class DisplayMoreViewHolder extends BaseViewHolder {
 
+        @BindView(R.id.display_more_cardView)
+        CardView displayMoreCardView;
         @BindView(R.id.mote_items_textView)
         TextView moreItemsTextView;
+        @BindView(R.id.updown_imageView)
+        ImageView upDownImageView;
 
         private boolean toggled = false;
 
@@ -686,11 +696,15 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(int position) {
             MyData myData = dataArrayList.get(position);
             Log.d("Position of viewholder", position+"");
-            if (!toggled)
+            if (!toggled) {
                 moreItemsTextView.setText(myData.getHeader().concat(" More"));
-            else
+                upDownImageView.setImageResource(R.drawable.ic_show_more);
+            }
+            else {
                 moreItemsTextView.setText("Show less");
-            moreItemsTextView.setOnClickListener(v -> {
+                upDownImageView.setImageResource(R.drawable.ic_show_less);
+            }
+            displayMoreCardView.setOnClickListener(v -> {
                 if (!toggled) {
                     int pos = dataArrayList.indexOf(myData);
                     Log.d("POSITION", pos+"");
@@ -702,6 +716,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     notifyItemRangeInserted(position, myData.getDataList().size());
                     toggled = true;
                     moreItemsTextView.setText("Show less");
+                    upDownImageView.setImageResource(R.drawable.ic_show_less);
                 }
                 else {
                     int pos = dataArrayList.indexOf(myData);
@@ -713,6 +728,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     toggled = false;
                     notifyItemRangeRemoved(pos+1, myData.getDataList().size());
                     moreItemsTextView.setText(myData.getHeader().concat(" More"));
+                    upDownImageView.setImageResource(R.drawable.ic_show_more);
                 }
             });
         }

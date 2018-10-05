@@ -7,7 +7,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
 
-    <color name="hubblerBlue">#2196f3</color>
+    <color name="colorCyanBlue">#2196f3</color>
     <color name="colorIndigo">#2c387e</color>
     <color name="colorLightGreen">#5ea411</color>
     <color name="colorFaintPurple">#B388FF</color>
@@ -21,5 +21,7 @@
     <color name="colorLightBrown">#fce9d2</color>
     <color name="colorOrange">#f79434</color>
     <color name="colorDarkBLue">#1e22e5</color>
-    <color name="mediumLightBlue">#4447eb</color>
+    <color name="colorMediumLightBlue">#4447eb</color>
+    <color name="colorCyan">#5cbdb9</color>
+    <color name="colorDarkGray">#707070</color>
 </resources>

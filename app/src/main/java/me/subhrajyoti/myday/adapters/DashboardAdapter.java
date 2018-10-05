@@ -44,19 +44,19 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         viewHolder.whenTextView.setText(dashboardModel.getWhen());
         viewHolder.whenTextView.setText(dashboardModel.getWhen());
 
-        String status = dashboardModel.getStatus();
-        String changeText = String.valueOf(dashboardModel.getChange());
-        if (status.equals("up")) {
-            viewHolder.upDownImageView.setImageResource(R.drawable.ic_up_arrow);
-            viewHolder.changeTextView.setTextColor(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorLightGreen, null));
-            changeText = "+".concat(changeText).concat("%");
-        } else {
-            viewHolder.upDownImageView.setImageResource(R.drawable.ic_down_arrow);
-            viewHolder.changeTextView.setTextColor(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorRed, null));
-            changeText = "-".concat(changeText).concat("%");
-        }
+//        String status = dashboardModel.getStatus();
+//        String changeText = String.valueOf(dashboardModel.getChange());
+//        if (status.equals("up")) {
+//            viewHolder.upDownImageView.setImageResource(R.drawable.ic_up_arrow);
+//            viewHolder.changeTextView.setTextColor(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorLightGreen, null));
+//            changeText = "+".concat(changeText).concat("%");
+//        } else {
+//            viewHolder.upDownImageView.setImageResource(R.drawable.ic_down_arrow);
+//            viewHolder.changeTextView.setTextColor(ResourcesCompat.getColor(MyDayApp.getContext().getResources(), R.color.colorRed, null));
+//            changeText = "-".concat(changeText).concat("%");
+//        }
 
-        viewHolder.changeTextView.setText(changeText);
+        //viewHolder.changeTextView.setText(changeText);
 
     }
 
@@ -81,10 +81,10 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         TextView descriptionTextView;
         @BindView(R.id.when_textview)
         TextView whenTextView;
-        @BindView(R.id.updown_imageview)
-        ImageView upDownImageView;
-        @BindView(R.id.change_textview)
-        TextView changeTextView;
+//        @BindView(R.id.updown_imageview)
+//        ImageView upDownImageView;
+//        @BindView(R.id.change_textview)
+//        TextView changeTextView;
 
         public DashboardViewHolder(@NonNull View itemView) {
             super(itemView);

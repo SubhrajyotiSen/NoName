@@ -258,40 +258,12 @@
     ]
   },
   {
-    "type": "channel update",
-    "data": [{
-      "channel_name": "design channel",
-      "update": "Start making decisions with the help of AI",
-      "likes": 285,
-      "comments": 35
-    },
-      {
-        "channel_name": "design channel",
-        "update": "Start making decisions with the help of AI",
-        "likes": 285,
-        "comments": 35
-      },
-      {
-        "channel_name": "design channel",
-        "update": "Start making decisions with the help of AI",
-        "likes": 285,
-        "comments": 35
-      },
-      {
-        "channel_name": "design channel",
-        "update": "Start making decisions with the help of AI",
-        "likes": 285,
-        "comments": 35
-      }
-    ]
-  },
-  {
     "type": "birthdays",
     "data": [{
-        "name": "Bertie Hampton",
-        "role": "HR Specialist",
-        "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
-      },
+      "name": "Bertie Hampton",
+      "role": "HR Specialist",
+      "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"
+    },
       { "name": "Lucas Crompton",
         "role": "Legal Counselor",
         "image_url": "https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png"

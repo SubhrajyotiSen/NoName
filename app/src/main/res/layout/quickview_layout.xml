@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:foreground="?android:attr/selectableItemBackground"
-    android:id="@+id/recyclerview_row_card">
+    android:id="@+id/recyclerview_row_card"
+    card_view:cardElevation="20dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
             android:layout_marginTop="10dp"
             />
 
-        <me.subhrajyoti.myday.views.HubblerBoldTextView
+        <me.subhrajyoti.myday.views.SemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/day_textview"
@@ -45,8 +46,7 @@
             android:layout_below="@+id/day_textview"
             android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="15dp"/>
 
     </RelativeLayout>
 
