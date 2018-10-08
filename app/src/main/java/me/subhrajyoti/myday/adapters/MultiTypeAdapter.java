@@ -2,7 +2,6 @@ package me.subhrajyoti.myday.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +40,7 @@ import me.subhrajyoti.myday.data.pojo.ProjectModel;
 import me.subhrajyoti.myday.data.pojo.QuickViewModel;
 import me.subhrajyoti.myday.data.pojo.TaskModel;
 import me.subhrajyoti.myday.data.pojo.TeamUpdateModel;
+import me.subhrajyoti.myday.data.pojo.ThoughtModel;
 import me.subhrajyoti.myday.utils.Utils;
 
 public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.BaseViewHolder>{
@@ -49,7 +49,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
             POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12,
-            HEADER = 13, MORE = 14;
+            HEADER = 13, MORE = 14, THOUGHT = 15;
     private Context context;
 
     public MultiTypeAdapter(Context context) {
@@ -81,6 +81,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         else if (i == MORE)
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.display_more_layout, viewGroup, false);
+        else if (i == THOUGHT)
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                    R.layout.thought_layout, viewGroup, false);
         else
             v = LayoutInflater.from(viewGroup.getContext()).inflate(
                     R.layout.generic_recyclerview_row, viewGroup, false);
@@ -127,6 +130,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 break;
             case MORE:
                 customViewHolder = new DisplayMoreViewHolder(v);
+                break;
+            case THOUGHT:
+                customViewHolder = new ThoughtViewHolder(v);
                 break;
             default:
                 customViewHolder = new QuickViewHolder(v);
@@ -241,6 +247,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                         dataArrayList.add((new MyData("more", String.valueOf(myData.getData().size() - 5),list)));
                     }
                     break;
+                case "thought":
+                    Object object = gson.fromJson(myData.getData().get(0), ThoughtModel.class);
+                    Log.d("TAG", ((ThoughtModel) object).getThought());
+                    dataArrayList.add(new MyData(myData.getType(), new ArrayList<>(Collections.singleton(object))));
+                    break;
                 default:
                     myData.makeArrayListFromJsonArray(QuickViewModel.class);
                     dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
@@ -280,6 +291,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 return HEADER;
             case "more":
                 return MORE;
+            case "thought":
+                return THOUGHT;
             default:
                 return QUICKVIEW;
         }
@@ -695,7 +708,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         @Override
         public void update(int position) {
             MyData myData = dataArrayList.get(position);
-            Log.d("Position of viewholder", position+"");
             if (!toggled) {
                 moreItemsTextView.setText(myData.getHeader().concat(" More"));
                 upDownImageView.setImageResource(R.drawable.ic_show_more);
@@ -710,7 +722,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     Log.d("POSITION", pos+"");
                     String type = dataArrayList.get(position - 1).getType();
                     for (Object object : myData.getDataList()) {
-                        Log.d("Inserting into position", pos+"");
                         dataArrayList.add(pos++, new MyData(type, Collections.singletonList(object)));
                     }
                     notifyItemRangeInserted(position, myData.getDataList().size());
@@ -721,7 +732,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 else {
                     int pos = dataArrayList.indexOf(myData);
                     for (int i = 0; i < myData.getDataList().size(); i++) {
-                        Log.d("removing from position", pos-1+"");
                         dataArrayList.remove(pos-1);
                         pos--;
                     }
@@ -732,6 +742,30 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                 }
             });
         }
+    }
+
+    class ThoughtViewHolder extends BaseViewHolder {
+
+        @BindView(R.id.thought_textView)
+        TextView thoughtTextView;
+        @BindView(R.id.speaker_textView)
+        TextView speakerTextView;
+
+        public ThoughtViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void update(int position) {
+            MyData myData = dataArrayList.get(position);
+            ThoughtModel thoughtModel = (ThoughtModel) myData.getDataList().get(0);
+
+            thoughtTextView.setText(thoughtModel.getThought());
+            speakerTextView.setText(thoughtModel.getSpeaker());
+
+        }
+
 
     }
 }

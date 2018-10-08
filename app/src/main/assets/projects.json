@@ -258,6 +258,13 @@
     ]
   },
   {
+    "type": "thought",
+    "data": [{
+      "thought": "With the new day comes new strength and new thoughts.",
+      "speaker": "Eleanor Roosevelt"
+    }]
+  },
+  {
     "type": "birthdays",
     "data": [{
       "name": "Bertie Hampton",
