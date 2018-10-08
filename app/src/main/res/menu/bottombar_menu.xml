@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottombaritem_myday"
+        android:icon="@drawable/ic_myday"
+        android:title="MyDay"
+
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/bottombaritem_dashboard"
+        android:icon="@drawable/ic_dash"
+        android:title="Dashboard"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/bottombaritem_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chats"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/bottombaritem_more"
+        android:icon="@drawable/ic_more"
+        android:title="More"
+        app:showAsAction="always"/>
+
+</menu>

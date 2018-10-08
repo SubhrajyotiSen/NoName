@@ -1,25 +1,19 @@
 package me.subhrajyoti.myday;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import me.subhrajyoti.myday.adapters.MultiTypeAdapter;
-import me.subhrajyoti.myday.data.remote.ApiService;
-import me.subhrajyoti.myday.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ApiService apiService;
-    private MultiTypeAdapter multiTypeAdapter;
-    @BindView(R.id.main_recyclerview)
-    RecyclerView recyclerView;
+    @BindView(R.id.bottom_bar)
+    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +22,23 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        apiService = Utils.getApiService();
+        MyDayFragment myDayFragment = new MyDayFragment();
 
-        multiTypeAdapter = new MultiTypeAdapter(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(multiTypeAdapter);
-        recyclerView.setHasFixedSize(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.bottombaritem_myday :
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_holder, myDayFragment)
+                                    .commit();
+                    }
+                    return true;
+                }
+        );
 
-        fetchData();
 
     }
 
-    @SuppressLint("CheckResult")
-    private void fetchData() {
-        apiService.loadData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(myDataList ->
-                    multiTypeAdapter.addAll(myDataList));
-    }
 
 }
