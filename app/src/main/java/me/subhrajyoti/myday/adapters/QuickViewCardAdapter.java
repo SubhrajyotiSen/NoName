@@ -19,7 +19,7 @@ import me.subhrajyoti.myday.data.pojo.QuickViewModel;
 
 public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdapter.QuickViewHolder> {
 
-    private List<QuickViewModel> quickViewModels;
+    public List<QuickViewModel> quickViewModels;
 
     public QuickViewCardAdapter() {
         this.quickViewModels = new ArrayList<>();
@@ -51,8 +51,8 @@ public class QuickViewCardAdapter extends RecyclerView.Adapter<QuickViewCardAdap
 
     public void addAll(List<Object> quickViewModels) {
         if (this.quickViewModels.isEmpty()) {
-            for (Object object : quickViewModels)
-                this.quickViewModels.add((QuickViewModel) object);
+        //    for (Object object : quickViewModels)
+                this.quickViewModels.add((QuickViewModel) quickViewModels.get(0));
             notifyDataSetChanged();
         }
     }

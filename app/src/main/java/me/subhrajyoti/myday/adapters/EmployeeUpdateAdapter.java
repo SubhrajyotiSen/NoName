@@ -21,10 +21,12 @@ import me.subhrajyoti.myday.data.pojo.EmployeeUpdateModel;
 
 public class EmployeeUpdateAdapter extends RecyclerView.Adapter<EmployeeUpdateAdapter.EmployeeUpdateViewHolder> {
 
-    private List<EmployeeUpdateModel> employeeUpdateModels;
+    public List<EmployeeUpdateModel> employeeUpdateModels;
+
 
     public EmployeeUpdateAdapter() {
         employeeUpdateModels = new ArrayList<>();
+
     }
 
     @NonNull
@@ -57,8 +59,8 @@ public class EmployeeUpdateAdapter extends RecyclerView.Adapter<EmployeeUpdateAd
 
     public void addAll(List<Object> employeeUpdateModels) {
         if (this.employeeUpdateModels.isEmpty()) {
-            for(Object object: employeeUpdateModels)
-                this.employeeUpdateModels.add((EmployeeUpdateModel) object);
+        //    for(Object object: employeeUpdateModels)
+                this.employeeUpdateModels.add((EmployeeUpdateModel) employeeUpdateModels.get(0));
             notifyDataSetChanged();
         }
     }

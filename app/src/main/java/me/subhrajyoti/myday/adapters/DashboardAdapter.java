@@ -20,7 +20,7 @@ import me.subhrajyoti.myday.data.pojo.DashboardModel;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashboardViewHolder> {
 
-    private List<DashboardModel> dashboardModels;
+    public List<DashboardModel> dashboardModels;
 
     public DashboardAdapter() {
         this.dashboardModels = new ArrayList<>();
@@ -67,8 +67,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
     public void addAll(List<Object> dashboardModels) {
         if (this.dashboardModels.isEmpty()) {
-            for(Object object: dashboardModels)
-                this.dashboardModels.add((DashboardModel) object);
+        //    for(Object object: dashboardModels)
+                this.dashboardModels.add((DashboardModel) dashboardModels.get(0));
             notifyDataSetChanged();
         }
     }

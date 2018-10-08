@@ -17,7 +17,7 @@ import me.subhrajyoti.myday.data.pojo.PollModel;
 
 public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder> {
 
-    private List<PollModel> pollModels;
+    public List<PollModel> pollModels;
 
     public PollAdapter() {
         this.pollModels = new ArrayList<>();
@@ -48,8 +48,8 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewVolder
 
     public void addAll(List<Object> pollModels) {
         if (this.pollModels.isEmpty()) {
-            for (Object object : pollModels)
-                this.pollModels.add((PollModel) object);
+        //    for (Object object : pollModels)
+                this.pollModels.add((PollModel) pollModels.get(0));
             notifyDataSetChanged();
         }
     }

@@ -50,10 +50,15 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
     private final int PROJECT = 0, BIRTHDAY = 1, QUICKVIEW = 2, CHANNEL = 3, DASHBOARD = 4, TEAM_UPDATE = 5,
             POLL = 6, EVENT = 7, CHANNEL_UPDATE = 8, NEW_MEMBER = 9, EMPLOYEE_UPDATE = 10, TASKS = 11, CLAIMS = 12,
             HEADER = 13, MORE = 14;
+    private int colorRed,colorGrey;
     private Context context;
+    //Picasso picasso;
 
     public MultiTypeAdapter(Context context) {
         this.context = context;
+        colorRed = ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null);
+        colorGrey = ResourcesCompat.getColor(context.getResources(), R.color.colorMediumLightGray, null);
+        Picasso.get();
     }
 
     @NonNull
@@ -153,7 +158,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             switch (myData.getType()) {
                 case "projects":
                     myData.makeArrayListFromJsonArray(ProjectModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData p = new MyData(myData.getType(), myData.getDataList());
+                    p.makeArrayListFromJsonArray(ProjectModel.class,myData.data);
+                    dataArrayList.add(p);
                     break;
                 case "birthdays":
                     dataArrayList.add(new MyData("header", myData.getType()));
@@ -175,35 +182,51 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     break;
                 case "channels":
                     myData.makeArrayListFromJsonArray(ChannelModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData c = new MyData(myData.getType(), myData.getDataList());
+                    c.makeArrayListFromJsonArray(ChannelModel.class,myData.data);
+                    dataArrayList.add(c);
                     break;
                 case "dashboard":
                     myData.makeArrayListFromJsonArray(DashboardModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData d =new MyData(myData.getType(), myData.getDataList());
+                    d.makeArrayListFromJsonArray(DashboardModel.class,myData.data);
+                    dataArrayList.add(d);
                     break;
                 case "team updates":
                     myData.makeArrayListFromJsonArray(TeamUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData tu = new MyData(myData.getType(), myData.getDataList());
+                    tu.makeArrayListFromJsonArray(TeamUpdateModel.class,myData.data);
+                    dataArrayList.add(tu);
                     break;
                 case "polls":
                     myData.makeArrayListFromJsonArray(PollModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData pl = new MyData(myData.getType(), myData.getDataList());
+                    pl.makeArrayListFromJsonArray(PollModel.class,myData.data);
+                    dataArrayList.add(pl);
                     break;
                 case "events":
                     myData.makeArrayListFromJsonArray(EventModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData ev = new MyData(myData.getType(), myData.getDataList());
+                    ev.makeArrayListFromJsonArray(EventModel.class,myData.data);
+                    dataArrayList.add(ev);
                     break;
                 case "channel update":
                     myData.makeArrayListFromJsonArray(ChannelUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData cu = new MyData(myData.getType(), myData.getDataList());
+                    myData.makeArrayListFromJsonArray(ChannelUpdateModel.class,myData.data);
+                    dataArrayList.add(cu);
                     break;
                 case "new members":
                     myData.makeArrayListFromJsonArray(NewMemberModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData nm = new MyData(myData.getType(), myData.getDataList());
+                    nm.makeArrayListFromJsonArray(NewMemberModel.class,myData.data);
+                    dataArrayList.add(nm);
                     break;
                 case "employee updates":
                     myData.makeArrayListFromJsonArray(EmployeeUpdateModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData eep = new MyData(myData.getType(), myData.getDataList());
+                    eep.makeArrayListFromJsonArray(EmployeeUpdateModel.class,myData.data);
+                    dataArrayList.add(eep);
                     break;
                 case "tasks":
                     dataArrayList.add(new MyData("header", myData.getType()));
@@ -243,7 +266,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
                     break;
                 default:
                     myData.makeArrayListFromJsonArray(QuickViewModel.class);
-                    dataArrayList.add(new MyData(myData.getType(), myData.getDataList()));
+                    MyData q = new MyData(myData.getType(), myData.getDataList());
+                    q.makeArrayListFromJsonArray(QuickViewModel.class,myData.data);
+                    dataArrayList.add(q);
             }
         }
         notifyDataSetChanged();
@@ -308,7 +333,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            projectsAdapter.addAll(myData.getDataList());
+
+            projectsAdapter.projectModelList = myData.projectModelList;
+            projectsAdapter.notifyDataSetChanged();
+           // projectsAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -346,7 +374,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             name.setText(birthdayModel.getName());
             role.setText(birthdayModel.getRole());
             wishEditText.setHint("Happy Birthday ".concat(birthdayModel.getName().substring(0, birthdayModel.getName().indexOf(' '))).concat("!"));
-            Picasso.get().load(birthdayModel.getImageURL()).fit().centerCrop().into(birthdayPersonImage);
+           Picasso.get().load(birthdayModel.getImageURL()).fit().centerCrop().into(birthdayPersonImage);
 
             Log.d("TAG", "birthtday");
         }
@@ -379,7 +407,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
         public void update(int position) {
             MyData myData = dataArrayList.get(position);
 
-            quickViewCardAdapter.addAll(myData.getDataList());
+            quickViewCardAdapter.quickViewModels = myData.quickModelList;
+            quickViewCardAdapter.notifyDataSetChanged();
+            //quickViewCardAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -404,7 +434,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            channelAdapter.addAll(myData.getDataList());
+            channelAdapter.channelModels = myData.channelModelList;
+            channelAdapter.notifyDataSetChanged();
+          //  channelAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -432,7 +464,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            dashboardAdapter.addAll(myData.getDataList());
+            dashboardAdapter.dashboardModels = myData.dashBoardModelList;
+            dashboardAdapter.notifyDataSetChanged();
+            //dashboardAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -457,7 +491,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(Utils.capitalizeFirstCharacter(myData.getType()));
-            teamUpdatesAdapter.addAll(myData.getDataList());
+            //teamUpdatesAdapter.addAll(myData.getDataList());
+
+            teamUpdatesAdapter.teamUpdateModels = myData.teamUpdateModelList;
+            teamUpdatesAdapter.notifyDataSetChanged();
+
         }
     }
 
@@ -483,7 +521,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(myData.getType());
-            pollAdapter.addAll(myData.getDataList());
+            //pollAdapter.addAll(myData.getDataList());
+            pollAdapter.pollModels = myData.pollModelList;
+            pollAdapter.notifyDataSetChanged();
+
         }
     }
 
@@ -508,7 +549,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(myData.getType());
-            eventAdapter.addAll(myData.getDataList());
+            //eventAdapter.addAll(myData.getDataList());
+
+            eventAdapter.eventModels = myData.eventModelList;
+            eventAdapter.notifyDataSetChanged();
 
         }
     }
@@ -534,7 +578,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(myData.getType());
-            channelUpdateAdapter.addAll(myData.getDataList());
+           // channelUpdateAdapter.addAll(myData.getDataList());
+            channelUpdateAdapter.channelUpdateModels = myData.channelUpdateModelList;
+            channelUpdateAdapter.notifyDataSetChanged();
         }
     }
 
@@ -559,7 +605,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(myData.getType());
-            newMemberAdapter.addAll(myData.getDataList());
+           // newMemberAdapter.addAll(myData.getDataList());
+            newMemberAdapter.newMemberModels = myData.memberModelList;
+            newMemberAdapter.notifyDataSetChanged();
         }
     }
 
@@ -584,7 +632,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
             MyData myData = dataArrayList.get(position);
 
             headerTextView.setText(myData.getType());
-            employeeUpdateAdapter.addAll(myData.getDataList());
+            employeeUpdateAdapter.employeeUpdateModels = myData.employeeUpdateModel;
+            employeeUpdateAdapter.notifyDataSetChanged();
+            //employeeUpdateAdapter.addAll(myData.getDataList());
         }
     }
 
@@ -612,12 +662,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<MultiTypeAdapter.Base
 
             switch (taskModel.getPriority()) {
                 case "high":
-                    priorityBar1.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
-                    priorityBar2.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
+                    priorityBar1.setBackgroundColor(colorRed);
+                    priorityBar2.setBackgroundColor(colorRed);
                     break;
                 case "low":
-                    priorityBar1.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorRed, null));
-                    priorityBar2.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorMediumLightGray, null));
+                    priorityBar1.setBackgroundColor(colorRed);
+                    priorityBar2.setBackgroundColor(colorGrey);
                     break;
                 default:
                     priorityBar1.setVisibility(View.GONE);

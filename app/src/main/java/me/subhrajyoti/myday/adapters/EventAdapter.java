@@ -19,10 +19,12 @@ import me.subhrajyoti.myday.data.pojo.EventModel;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
-    private List<EventModel> eventModels;
+    public List<EventModel> eventModels;
+    private int colorBlue;
 
     public EventAdapter() {
         this.eventModels = new ArrayList<>();
+        colorBlue = ColorGenerator.getColor(4);
     }
 
     @NonNull
@@ -41,7 +43,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         eventViewHolder.eventNameTextView.setText(eventModel.getName());
         eventViewHolder.venueTextView.setText(eventModel.getVenue());
 
-        eventViewHolder.eventCardView.setCardBackgroundColor(ColorGenerator.getColor(4));
+        eventViewHolder.eventCardView.setCardBackgroundColor(colorBlue);
     }
 
     @Override
@@ -51,8 +53,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public void addAll(List<Object> eventModels) {
         if (this.eventModels.isEmpty()) {
-            for(Object object: eventModels)
-                this.eventModels.add((EventModel) object);
+         //   for(Object object: eventModels)
+                this.eventModels.add((EventModel) eventModels.get(0));
             notifyDataSetChanged();
         }
     }

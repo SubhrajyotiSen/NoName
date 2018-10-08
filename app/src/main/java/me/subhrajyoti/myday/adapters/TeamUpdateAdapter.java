@@ -17,7 +17,7 @@ import me.subhrajyoti.myday.data.pojo.TeamUpdateModel;
 
 public class TeamUpdateAdapter extends RecyclerView.Adapter<TeamUpdateAdapter.TeamUpdateViewHolder> {
 
-    private List<TeamUpdateModel> teamUpdateModels;
+    public List<TeamUpdateModel> teamUpdateModels;
 
     public TeamUpdateAdapter() {
         this.teamUpdateModels = new ArrayList<>();
@@ -48,8 +48,8 @@ public class TeamUpdateAdapter extends RecyclerView.Adapter<TeamUpdateAdapter.Te
 
     public void addAll(List<Object> teamUpdateModels) {
         if (this.teamUpdateModels.isEmpty()) {
-            for (Object object : teamUpdateModels)
-                this.teamUpdateModels.add((TeamUpdateModel) object);
+        //    for (Object object : teamUpdateModels)
+                this.teamUpdateModels.add((TeamUpdateModel) teamUpdateModels.get(0));
             notifyDataSetChanged();
         }
     }

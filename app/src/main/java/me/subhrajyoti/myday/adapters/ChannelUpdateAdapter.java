@@ -19,7 +19,7 @@ import me.subhrajyoti.myday.data.pojo.ChannelUpdateModel;
 
 public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdapter.ChannelUpdateViewHolder> {
 
-    private List<ChannelUpdateModel> channelUpdateModels;
+    public List<ChannelUpdateModel> channelUpdateModels;
 
     public ChannelUpdateAdapter() {
         this.channelUpdateModels = new ArrayList<>();
@@ -52,8 +52,8 @@ public class ChannelUpdateAdapter extends RecyclerView.Adapter<ChannelUpdateAdap
 
     public void addAll(List<Object> channelUpdateModels) {
         if (this.channelUpdateModels.isEmpty()) {
-            for(Object object: channelUpdateModels)
-                this.channelUpdateModels.add((ChannelUpdateModel) object);
+          //\  for(Object object: channelUpdateModels)
+                this.channelUpdateModels.add((ChannelUpdateModel) channelUpdateModels.get(0));
             notifyDataSetChanged();
         }
     }

@@ -9,10 +9,21 @@ import java.util.List;
 
 public class MyData {
 
-    private String type;
-    private JsonArray data;
-    private List<Object> dataList;
-    private String header;
+    public String type;
+    public JsonArray data;
+    public List<Object> dataList;
+    public String header;
+    public List<NewMemberModel>memberModelList = new ArrayList<>();
+    public List<EventModel>eventModelList = new ArrayList<>();
+    public List<ChannelUpdateModel>channelUpdateModelList = new ArrayList<>();
+    public List<ChannelModel>channelModelList = new ArrayList<>();
+    public List<ProjectModel>projectModelList = new ArrayList<>();
+    public List<QuickViewModel>quickModelList = new ArrayList<>();
+    public List<TeamUpdateModel>teamUpdateModelList = new ArrayList<>();
+    public List<DashboardModel>dashBoardModelList = new ArrayList<>();
+    public List<PollModel>pollModelList = new ArrayList<>();
+    public List<EmployeeUpdateModel>employeeUpdateModel = new ArrayList<>();
+
 
     public MyData() {
         dataList = new ArrayList<>();
@@ -52,10 +63,60 @@ public class MyData {
 
     public <T> void makeArrayListFromJsonArray(Class<T> tClass) {
         Gson gson = new Gson();
+
+        List dl = getList(tClass);
         for (int i = 0; i < data.size(); i++) {
             JsonElement jsonElement = data.get(i);
-            dataList.add(gson.fromJson(jsonElement, tClass));
+            dl.add(gson.fromJson(jsonElement, tClass));
         }
+    }
+
+    public <T> void makeArrayListFromJsonArray(Class<T> tClass,JsonArray data) {
+        Gson gson = new Gson();
+
+        List dl = getList(tClass);
+        for (int i = 0; i < data.size(); i++) {
+            JsonElement jsonElement = data.get(i);
+            dl.add(gson.fromJson(jsonElement, tClass));
+        }
+    }
+
+
+    public List getList(Object c)
+    {
+
+        if (c.equals( NewMemberModel.class)){
+            return memberModelList;
+        }
+        else if (c.equals(EventModel.class)){
+            return eventModelList;
+        }
+        else if (c.equals(ChannelModel.class)){
+            return channelModelList;
+        }
+        else if (c.equals(ProjectModel.class)){
+            return projectModelList;
+        }
+        else if (c.equals(QuickViewModel.class)){
+            return quickModelList;
+        }
+        else if (c.equals(TeamUpdateModel.class)){
+            return teamUpdateModelList;
+        }
+        else if (c.equals(DashboardModel.class)){
+            return dashBoardModelList;
+
+        }else if (c.equals(PollModel.class)){
+            return pollModelList;
+        }
+        else if (c.equals(EmployeeUpdateModel.class)){
+            return employeeUpdateModel;
+        }else if (c.equals(ChannelUpdateModel.class)){
+            return channelUpdateModelList;
+        }
+
+        return dataList;
+
     }
 
 }

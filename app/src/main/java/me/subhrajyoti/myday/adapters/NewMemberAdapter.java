@@ -20,7 +20,8 @@ import me.subhrajyoti.myday.data.pojo.NewMemberModel;
 
 public class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.NewMemberViewHolder> {
 
-    private List<NewMemberModel> newMemberModels;
+    public List<NewMemberModel> newMemberModels;
+
 
     public NewMemberAdapter() {
         this.newMemberModels = new ArrayList<>();
@@ -38,7 +39,7 @@ public class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.NewM
     public void onBindViewHolder(@NonNull NewMemberViewHolder newMemberViewHolder, int i) {
         NewMemberModel newMemberModel = newMemberModels.get(i);
 
-        Picasso.get().load(newMemberModel.getImageURL()).fit().centerCrop().into(newMemberViewHolder.newMemberImageView);
+       Picasso.get().load(newMemberModel.getImageURL()).fit().centerCrop().into(newMemberViewHolder.newMemberImageView);
         newMemberViewHolder.newMemberNameTextView.setText(newMemberModel.getName());
         newMemberViewHolder.newMemberRoleTextView.setText(newMemberModel.getRole());
 
@@ -51,8 +52,8 @@ public class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.NewM
 
     public void addAll(List<Object> newMemberModels) {
         if (this.newMemberModels.isEmpty()) {
-            for (Object object: newMemberModels)
-                this.newMemberModels.add((NewMemberModel) object);
+         //   for (Object object: newMemberModels)
+                this.newMemberModels.add((NewMemberModel) newMemberModels.get(0));
             notifyDataSetChanged();
         }
     }

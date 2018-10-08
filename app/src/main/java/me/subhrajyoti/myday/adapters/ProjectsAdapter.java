@@ -25,7 +25,7 @@ import me.subhrajyoti.myday.data.pojo.ProjectModel;
 
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectsViewHolder> {
 
-    private final List<ProjectModel> projectModelList;
+    public List<ProjectModel> projectModelList;
 
     public ProjectsAdapter() {
         this.projectModelList = new ArrayList<>();
@@ -93,8 +93,8 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
     public void addAll(List<Object> projectModels) {
         if (this.projectModelList.isEmpty()) {
-            for (Object object : projectModels)
-                this.projectModelList.add((ProjectModel) object);
+         //\   for (Object object : projectModels)
+                this.projectModelList.add((ProjectModel) projectModels.get(0));
             notifyDataSetChanged();
         }
     }

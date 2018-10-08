@@ -15,13 +15,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_decor_bg">
+        >
 
         <ImageView
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/ic_decor_top"/>
+            android:layout_height="60dp"/>
 
         <me.subhrajyoti.myday.views.CircularImageView
             android:layout_width="100dp"

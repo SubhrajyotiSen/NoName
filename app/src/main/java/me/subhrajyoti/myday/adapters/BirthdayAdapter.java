@@ -74,8 +74,8 @@ public class BirthdayAdapter extends RecyclerView.Adapter<BirthdayAdapter.Birthd
 
     public void addAll(List<Object> birthdayModels) {
         if (this.birthdayModelList.isEmpty()) {
-            for(Object object : birthdayModels)
-                this.birthdayModelList.add((BirthdayModel) object);
+         //   for(Object object : birthdayModels)
+                this.birthdayModelList.add((BirthdayModel) birthdayModels.get(0));
             notifyDataSetChanged();
         }
     }
